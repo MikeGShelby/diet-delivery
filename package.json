@@ -1,0 +1,28 @@
+{
+  "name": "group-project-2",
+  "version": "1.0.0",
+  "description": "Dietary Planning App",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.4.0",
+    "y": "^0.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikeGShelby/group-project-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MikeGShelby/group-project-2/issues"
+  },
+  "homepage": "https://github.com/MikeGShelby/group-project-2#readme"
+}
