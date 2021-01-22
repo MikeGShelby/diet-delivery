@@ -32,7 +32,7 @@ SelectMeal.init(
       timestamps: false,
       freezeTableName: true,
       underscored: true,
-      modelName: 'select_meal'
+      modelName: 'selected_meal'
     }
   );
 

@@ -4,7 +4,7 @@ const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 const { selectMeal } = require('../../models/Meal');
 
-// get all meals
+// GET all meals /api/meals
 router.get('/', (req, res) => {
     Meal.findAll({
       order: [['title', 'ASC']],
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
         'description',
         'image',
         'created_at',
-        [sequelize.literal('(SELECT COUNT(*) FROM select_meal WHERE meal.id = select_meal.meal_id)'), 'meal_selected']
+        [sequelize.literal('(SELECT COUNT(*) FROM selected_meal WHERE meal.id = selected_meal.meal_id)'), 'meal_selected']
       ]
 
     })
@@ -25,7 +25,31 @@ router.get('/', (req, res) => {
       });
 });
 
-// Get one meal associated with provided ID
+// GET all meal selections /api/meals/selected-meal
+router.get('/selected-meals', (req, res) => {
+  SelectMeal.findAll({
+      attributes: [
+        'id',
+        'user_id',
+        'meal_id'
+      ],
+      include: [{
+        model: User,
+        attributes: ['username']
+      }],
+      include: [{
+        model: Meal,
+        attributes: ['title']
+      }]
+  })
+    .then(dbSelectedMealData => res.json(dbSelectedMealData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// GET one meal associated with provided ID
 router.get('/:id', (req, res) => {
     Meal.findOne({
       where: {
@@ -33,11 +57,11 @@ router.get('/:id', (req, res) => {
       },
       attributes: [
         'id',
-        'description',
         'title',
+        'description',
         'image',
         'created_at',
-        [sequelize.literal('(SELECT COUNT(*) FROM select_meal WHERE meal.id = select_meal.meal_id)'), 'meal_selected']
+        [sequelize.literal('(SELECT COUNT(*) FROM selected_meal WHERE meal.id = selected_meal.meal_id)'), 'meal_selected']
       ]
     })
       .then(dbMealData => {
@@ -53,15 +77,39 @@ router.get('/:id', (req, res) => {
       });
 });
 
+
+// MEAL SELECTION ROUTES
+
+
+
 // PUT /api/meals/select-meal (select a meal, WITHOUT login auth)
-router.put('/select-meal', (req, res) => {
-    Meal.selectMeal(req.body, { SelectMeal, User })
-      .then(updatedSelectMealData => res.json(updatedSelectMealData))
+router.put('/selected-meals', (req, res) => {
+  SelectMeal.create({
+      user_id: req.body.user_id,
+      meal_id: req.body.meal_id
+  })
+      .then(dbSelectedMealData => res.json(dbSelectedMealData))
+      .catch(err => res.json(err));
+});
+
+// DELETE /api/meals/select-meal/:id (delete a meal selection, WITHOUT login auth)
+router.delete('/:id', (req, res) => {
+  SelectMeal.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(dbselectedMealData => {
+        if (!dbselectedMealData) {
+          res.status(404).json({ message: 'No selected meal found with this id' });
+          return;
+        }
+        res.json(dbselectedMealData);
+      })
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
       });
-  }
 });
 
 // PUT /api/meals/select-meal (select a meal, WITH login auth)
@@ -79,25 +127,5 @@ router.put('/select-meal', (req, res) => {
 // });
 
 // NOTE: NEW ROUTE NEEDED FOR REMOVING MEAL SELECTION
-
-// Delete a post
-// router.delete('/:id', withAuth, (req, res) => {
-//     Post.destroy({
-//       where: {
-//         id: req.params.id
-//       }
-//     })
-//       .then(dbPostData => {
-//         if (!dbPostData) {
-//           res.status(404).json({ message: 'No post found with this id' });
-//           return;
-//         }
-//         res.json(dbPostData);
-//       })
-//       .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//       });
-// });
 
 module.exports = router;

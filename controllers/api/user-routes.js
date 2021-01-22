@@ -1,12 +1,19 @@
 const router = require('express').Router();
-const { User, Meal, Vote, Comment } = require('../../models');
+const { User, Meal, SelectMeal } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // GET /api/users (get all users)
 router.get('/', (req, res) => {
     // Access our User model and run .findAll() method)
     User.findAll({
-      attributes: { exclude: ['password'] }
+      attributes: { exclude: ['password'] },
+      include: [
+          {
+            model: Meal,
+            attributes: ['id', 'title', 'description', 'image', 'created_at'],
+            through: SelectMeal
+          }
+      ]
     })
       .then(dbUserData => res.json(dbUserData))
       .catch(err => {
@@ -25,22 +32,9 @@ router.get('/:id', (req, res) => {
       include: [
         {
           model: Meal,
-          attributes: ['id', 'title', 'description', 'image', 'created_at']
-        },
-        // include the Comment model here:
-        {
-          model: Comment,
-          attributes: ['id', 'comment_text', 'created_at'],
-          include: {
-            model: Post,
-            attributes: ['title']
-          }
-        },
-        {
-          model: Post,
-          attributes: ['title'],
-          through: Vote,
-          as: 'voted_posts'
+          attributes: ['id', 'title', 'description', 'image', 'created_at'],
+          through: SelectMeal,
+          as: 'selected_meals'
         }
       ]
     })

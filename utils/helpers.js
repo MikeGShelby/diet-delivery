@@ -17,4 +17,9 @@ module.exports = {
           .split('/')[0]
           .split('?')[0];
     },
+    format_img_alt: imgPath => {
+      return imgPath
+        .replace('images/', '')
+        .split('.')[0]
+  },
 }

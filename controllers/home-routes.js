@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Meal, User, Comment } = require('../models');
+const { Meal, User, SelectMeal, Diet, MealDiet } = require('../models');
 
 router.get('/', (req, res) => {
   console.log(req.session);
@@ -10,22 +10,7 @@ router.get('/', (req, res) => {
       'description',
       'title',
       'image',
-      'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE meal.id = vote.post_id)'), 'vote_count']
-    ],
-    include: [
-      {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: ['username']
-        }
-      },
-      {
-        model: User,
-        attributes: ['username']
-      }
+      'created_at'
     ]
   })
     .then(dbMealData => {
@@ -62,27 +47,12 @@ router.get('/meal/:id', (req, res) => {
       'description',
       'title',
       'image',
-      'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE meal.id = vote.post_id)'), 'vote_count']
-    ],
-    include: [
-      {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: ['username']
-        }
-      },
-      {
-        model: User,
-        attributes: ['username']
-      }
+      'created_at'
     ]
   })
     .then(dbMealData => {
       if (!dbMealData) {
-        res.status(404).json({ message: 'No post found with this id' });
+        res.status(404).json({ message: 'No meal found with this id' });
         return;
       }
 
@@ -90,7 +60,7 @@ router.get('/meal/:id', (req, res) => {
       const meal = dbMealData.get({ plain: true });
 
       // pass data to template
-      res.render('single-post', {
+      res.render('single-meal', {
         post,
         loggedIn: req.session.loggedIn
       });

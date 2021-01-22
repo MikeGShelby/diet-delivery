@@ -1,0 +1,14 @@
+{{> meal-info meal }}
+
+{{#if loggedIn}}
+  <div>
+    <button type="submit">Select Meal</button>
+    <button type="button" class="upvote-btn">Select Meal</button>
+  </div>
+</form>
+{{/if}}
+
+{{#if loggedIn}}
+  <script src="/javascript/comment.js"></script>
+  <script src="/javascript/upvote.js"></script>
+{{/if}}
