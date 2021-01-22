@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// create our Meal model
+// create Meal model
 class Meal extends Model {
   static selectMeal(body, models) {
     return models.SelectMeal.create({

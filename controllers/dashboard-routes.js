@@ -3,16 +3,18 @@ const sequelize = require('../config/connection');
 const { Meal, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
+// GET all meals
 router.get('/', withAuth, (req, res) => {
     Meal.findAll({
-      where: {
-        // use the ID from the session
-        user_id: req.session.user_id
-      },
+      // where: {
+      //   // use the ID from the session
+      //   user_id: req.session.user_id
+      // },
       attributes: [
         'id',
         'title',
         'description',
+        'image',
         'created_at'
       ]
     })

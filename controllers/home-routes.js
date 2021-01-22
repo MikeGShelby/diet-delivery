@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Meal, User, SelectMeal, Diet, MealDiet } = require('../models');
 
+// GET homepage
 router.get('/', (req, res) => {
   console.log(req.session);
   Meal.findAll({
@@ -28,6 +29,7 @@ router.get('/', (req, res) => {
     });
 });
 
+// GET login page
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
@@ -37,6 +39,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// GET single-meal page
 router.get('/meal/:id', (req, res) => {
   Meal.findOne({
     where: {
@@ -61,7 +64,7 @@ router.get('/meal/:id', (req, res) => {
 
       // pass data to template
       res.render('single-meal', {
-        post,
+        meal,
         loggedIn: req.session.loggedIn
       });
     })
