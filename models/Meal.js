@@ -3,25 +3,21 @@ const sequelize = require('../config/connection');
 
 // create our Meal model
 class Meal extends Model {
-  static upvote(body, models) {
-    return models.Vote.create({
+  static selectMeal(body, models) {
+    return models.SelectMeal.create({
       user_id: body.user_id,
-      post_id: body.post_id
+      post_id: body.meal_id
     }).then(() => {
       return Meal.findOne({
         where: {
-          id: body.post_id
+          id: body.meal_id
         },
         attributes: [
           'id',
           'description',
           'title',
           'image',
-          'created_at',
-          [
-            sequelize.literal('(SELECT COUNT(*) FROM vote WHERE meal.id = vote.post_id)'),
-            'vote_count'
-          ]
+          'created_at'
         ]
       });
     });

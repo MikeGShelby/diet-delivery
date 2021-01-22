@@ -1,20 +1,22 @@
 const router = require('express').Router();
-const { Meal, User, Vote, Diet } = require('../../models');
+const { Meal, User, SelectMeal, Diet } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
+const { selectMeal } = require('../../models/Meal');
 
 // get all meals
 router.get('/', (req, res) => {
     Meal.findAll({
-      order: [['created_at', 'ASC']],
+      order: [['title', 'ASC']],
       attributes: [
         'id',
-        'description',
         'title',
+        'description',
         'image',
         'created_at',
-        [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE meal.id = vote.post_id)'), 'vote_count']
-      ],
+        [sequelize.literal('(SELECT COUNT(*) FROM select_meal WHERE meal.id = select_meal.meal_id)'), 'meal_selected']
+      ]
+
     })
       .then(dbMealData => res.json(dbMealData))
       .catch(err => {
@@ -35,7 +37,7 @@ router.get('/:id', (req, res) => {
         'title',
         'image',
         'created_at',
-        [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE meal.id = vote.post_id)'), 'vote_count']
+        [sequelize.literal('(SELECT COUNT(*) FROM select_meal WHERE meal.id = select_meal.meal_id)'), 'meal_selected']
       ]
     })
       .then(dbMealData => {
@@ -51,19 +53,30 @@ router.get('/:id', (req, res) => {
       });
 });
 
-// PUT /api/posts/upvote (add a vote to a post)
-router.put('/upvote', withAuth, (req, res) => {
-  // make sure the session exists first
-  if (req.session) {
-    // pass session id along with all destructured properties on req.body
-    Meal.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User })
-      .then(updatedVoteData => res.json(updatedVoteData))
+// PUT /api/meals/select-meal (select a meal, WITHOUT login auth)
+router.put('/select-meal', (req, res) => {
+    Meal.selectMeal(req.body, { SelectMeal, User })
+      .then(updatedSelectMealData => res.json(updatedSelectMealData))
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
       });
   }
 });
+
+// PUT /api/meals/select-meal (select a meal, WITH login auth)
+// router.put('/select-meal', withAuth, (req, res) => {
+//   // make sure the session exists first
+//   if (req.session) {
+//     // pass session id along with all destructured properties on req.body
+//     Meal.selectMeal({ ...req.body, user_id: req.session.user_id }, { SelectMeal, User })
+//       .then(updatedSelectMealData => res.json(updatedSelectMealData))
+//       .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//       });
+//   }
+// });
 
 // NOTE: NEW ROUTE NEEDED FOR REMOVING MEAL SELECTION
 

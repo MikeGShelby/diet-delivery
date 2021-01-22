@@ -1,20 +1,24 @@
 const User = require('./User');
 const Meal = require('./Meal');
-const Vote = require('./Vote');
+const SelectMeal = require('./SelectMeal');
 const Diet = require('./Diet');
 const MealDiet = require('./MealDiet');
 
 
-Vote.belongsTo(User, {
+SelectMeal.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
-Vote.belongsTo(Meal, {
+SelectMeal.belongsTo(Meal, {
     foreignKey: 'meal_id'
 });
 
-User.hasMany(Vote, {
+User.hasMany(SelectMeal, {
     foreignKey: 'user_id'
+});
+
+Meal.hasMany(SelectMeal, {
+    foreignKey: 'meal_id'
 });
 
 // Meals belongToMany Diets (through MealDiet)
@@ -37,4 +41,4 @@ Diet.hasMany(MealDiet, {
     foreignKey: 'diet_id'
 });
 
-module.exports = { User, Meal, Vote, Diet, MealDiet };
+module.exports = { User, Meal, SelectMeal, Diet, MealDiet };
