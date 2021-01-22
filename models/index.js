@@ -5,7 +5,7 @@ const Diet = require('./Diet');
 const MealDiet = require('./MealDiet');
 
 
-// MealSelection and User associations
+//MEALSELECTION AND MEAL ASSOCIATIONS
 
 // User.belongsToMany(Meal, {
 //     through: SelectMeal,
@@ -34,24 +34,35 @@ Meal.hasMany(SelectMeal, {
     foreignKey: 'meal_id'
 });
 
-// Meals belongToMany Diets (through MealDiet)
-// Meal.belongsToMany(Diet, {
-//     through: MealDiet,
-//     foreignKey: 'meal_id'
+
+// MEAL AND DIET ASSOCIATIONS
+
+// Meal belongToMany Diets (through MealDiet)
+Meal.belongsToMany(Diet, {
+    through: MealDiet,
+    foreignKey: 'meal_id'
+});
+
+// Diet belongToMany Meals (through ProductTag)
+Diet.belongsToMany(Meal, {
+    through: MealDiet,
+    foreignKey: 'diet_id'
+});
+
+// ProductTag.belongsTo(Product, {
+//   foreignKey: 'product_id'
 // });
 
-// Diets belongToMany Meals (through MealDiet)
-// Diet.belongsToMany(Meal, {
-//     through: MealDiet,
-//     foreignKey: 'diet_id'
+// ProductTag.belongsTo(Tag, {
+//   foreignKey: 'tag_id'
 // });
 
-// Meal.hasMany(MealDiet, {
-//     foreignKey: 'meal_id'
-// });
+Meal.hasMany(MealDiet, {
+    foreignKey: 'meal_id'
+});
 
-// Diet.hasMany(MealDiet, {
-//     foreignKey: 'diet_id'
-// });
+Diet.hasMany(MealDiet, {
+    foreignKey: 'diet_id'
+});
 
 module.exports = { User, Meal, SelectMeal, Diet, MealDiet };

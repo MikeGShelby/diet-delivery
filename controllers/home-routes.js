@@ -12,6 +12,12 @@ router.get('/', (req, res) => {
       'title',
       'image',
       'created_at'
+    ],
+    include: [
+      {
+        model: Diet,
+        attributes: ['id', 'diet_name']
+      }
     ]
   })
     .then(dbMealData => {

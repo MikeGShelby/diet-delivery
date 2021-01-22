@@ -3,6 +3,11 @@
     <h1><a href="/meal/{{id}}" target="_blank">{{title}}</a></h1>
       <p>({{description}})</p>
       <img src="{{image}}" alt="{{format_img_alt image}}">
+      {{#each diets as |diet|}}
+        <li>
+          {{ diet }}
+        </li>
+      {{/each}}
   </div>
 
   {{#if loggedIn}}
@@ -10,7 +15,6 @@
       <button type="button" class="upvote-btn">Select Meal</button>
     </div>
   {{/if}}
-
 
   <div class="meta">
     {{selected_meal}}

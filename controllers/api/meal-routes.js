@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Meal, User, SelectMeal, Diet } = require('../../models');
+const { Meal, User, SelectMeal, Diet, MealDiet } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 const { selectMeal } = require('../../models/Meal');
@@ -15,8 +15,13 @@ router.get('/', (req, res) => {
         'image',
         'created_at',
         [sequelize.literal('(SELECT COUNT(*) FROM selected_meal WHERE meal.id = selected_meal.meal_id)'), 'meal_selected']
+      ],
+      include: [
+        {
+          model: Diet,
+          attributes: ['id', 'diet_name']
+        }
       ]
-
     })
       .then(dbMealData => res.json(dbMealData))
       .catch(err => {
