@@ -1,16 +1,17 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, User, Comment } = require('../models');
+const { Meal, User, Comment } = require('../models');
 
 router.get('/', (req, res) => {
   console.log(req.session);
-  Post.findAll({
+  Meal.findAll({
     attributes: [
       'id',
-      'post_url',
+      'description',
       'title',
+      'image',
       'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE meal.id = vote.post_id)'), 'vote_count']
     ],
     include: [
       {
@@ -27,12 +28,12 @@ router.get('/', (req, res) => {
       }
     ]
   })
-    .then(dbPostData => {
+    .then(dbMealData => {
       // pass all post objects into the homepage template
-      const posts = dbPostData.map(post => post.get({ plain: true }));
+      const meals = dbMealData.map(meal => meal.get({ plain: true }));
       // Added loggedIn data here, as homepage was not properly displaying conditional login/logout link
       res.render('homepage', {
-        posts,
+        meals,
         loggedIn: req.session.loggedIn
       });
     })
@@ -51,17 +52,18 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/post/:id', (req, res) => {
-  Post.findOne({
+router.get('/meal/:id', (req, res) => {
+  Meal.findOne({
     where: {
       id: req.params.id
     },
     attributes: [
       'id',
-      'post_url',
+      'description',
       'title',
+      'image',
       'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE meal.id = vote.post_id)'), 'vote_count']
     ],
     include: [
       {
@@ -78,14 +80,14 @@ router.get('/post/:id', (req, res) => {
       }
     ]
   })
-    .then(dbPostData => {
-      if (!dbPostData) {
+    .then(dbMealData => {
+      if (!dbMealData) {
         res.status(404).json({ message: 'No post found with this id' });
         return;
       }
 
       // serialize the data
-      const post = dbPostData.get({ plain: true });
+      const meal = dbMealData.get({ plain: true });
 
       // pass data to template
       res.render('single-post', {

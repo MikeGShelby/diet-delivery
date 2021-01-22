@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS just_tech_news_db;
+DROP DATABASE IF EXISTS meal_delivery;
 
-CREATE DATABASE just_tech_news_db;
+CREATE DATABASE meal_delivery;
