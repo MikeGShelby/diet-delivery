@@ -27,7 +27,7 @@ const mealData = [
     image: 'images/meal-image.jpg'
   },
   {
-    title: 'Meal Item 5',
+    title: 'Meal Item 6',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam posuere posuere.',
     image: 'images/meal-image.jpg'
   }
