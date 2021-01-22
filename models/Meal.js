@@ -28,7 +28,7 @@ class Meal extends Model {
   }
 }
 
-// create fields/columns for Post model
+// create fields/columns for Meal model
 Meal.init(
     {
       id: {
@@ -46,15 +46,8 @@ Meal.init(
         allowNull: false
       },
       image: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
       },
-      // user_id: {
-      //   type: DataTypes.INTEGER,
-      //   references: {
-      //     model: 'user',
-      //     key: 'id'
-      //   }
     },
     {
       sequelize,

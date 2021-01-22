@@ -1,61 +1,40 @@
 const User = require('./User');
 const Meal = require('./Meal');
 const Vote = require('./Vote');
-const Comment = require('./Comment');
+const Diet = require('./Diet');
+const MealDiet = require('./MealDiet');
 
-// User/Post associations
-User.hasMany(Meal, {
-    foreignKey: 'user_id'
-});
-
-Meal.belongsTo(User, {
-    foreignKey: 'user_id',
-});
-
-// Vote associations
-User.belongsToMany(Meal, {
-    through: Vote,
-    as: 'voted_posts',
-    foreignKey: 'user_id'
-});
-
-Meal.belongsToMany(User, {
-    through: Vote,
-    as: 'voted_posts',
-    foreignKey: 'post_id'
-});
 
 Vote.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
 Vote.belongsTo(Meal, {
-    foreignKey: 'post_id'
+    foreignKey: 'meal_id'
 });
 
 User.hasMany(Vote, {
     foreignKey: 'user_id'
 });
 
-Meal.hasMany(Vote, {
-    foreignKey: 'post_id'
+// Meals belongToMany Diets (through MealDiet)
+Meal.belongsToMany(Diet, {
+    through: MealDiet,
+    foreignKey: 'meal_id'
 });
 
-// Comment associations
-Comment.belongsTo(User, {
-    foreignKey: 'user_id'
+// Diets belongToMany Meals (through MealDiet)
+Diet.belongsToMany(Meal, {
+    through: MealDiet,
+    foreignKey: 'diet_id'
 });
 
-Comment.belongsTo(Meal, {
-    foreignKey: 'post_id',
+Meal.hasMany(MealDiet, {
+    foreignKey: 'meal_id'
 });
 
-User.hasMany(Comment, {
-    foreignKey: 'user_id'
+Diet.hasMany(MealDiet, {
+    foreignKey: 'diet_id'
 });
 
-Meal.hasMany(Comment, {
-    foreignKey: 'post_id'
-});
-
-module.exports = { User, Meal, Vote, Comment };
+module.exports = { User, Meal, Vote, Diet, MealDiet };
