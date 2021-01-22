@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Meal, User, Vote, Comment } = require('../../models');
+const { Meal, User, Vote, Diet } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
@@ -15,21 +15,6 @@ router.get('/', (req, res) => {
         'created_at',
         [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE meal.id = vote.post_id)'), 'vote_count']
       ],
-      include: [
-        // include the Comment model here:
-        {
-          model: Comment,
-          attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
-        },
-        {
-          model: User,
-          attributes: ['username']
-        }
-      ]
     })
       .then(dbMealData => res.json(dbMealData))
       .catch(err => {
@@ -51,21 +36,6 @@ router.get('/:id', (req, res) => {
         'image',
         'created_at',
         [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE meal.id = vote.post_id)'), 'vote_count']
-      ],
-      include: [
-        // include the Comment model here:
-        {
-          model: Comment,
-          attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
-        },
-        {
-          model: User,
-          attributes: ['username']
-        }
       ]
     })
       .then(dbMealData => {
@@ -80,21 +50,6 @@ router.get('/:id', (req, res) => {
         res.status(500).json(err);
       });
 });
-
-// Create new post (not needed. Meal data will be seeded into db)
-// router.post('/', withAuth, (req, res) => {
-//     // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
-//     Post.create({
-//       title: req.body.title,
-//       post_url: req.body.post_url,
-//       user_id: req.session.user_id
-//     })
-//       .then(dbPostData => res.json(dbPostData))
-//       .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//       });
-// });
 
 // PUT /api/posts/upvote (add a vote to a post)
 router.put('/upvote', withAuth, (req, res) => {
