@@ -16,15 +16,18 @@ SelectMeal.init(
         references: {
           model: 'user',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE'
       },
       meal_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+
         references: {
           model: 'meal',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE'
       }
     },
     {

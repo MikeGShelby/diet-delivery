@@ -7,31 +7,24 @@ const MealDiet = require('./MealDiet');
 
 //MEALSELECTION AND MEAL ASSOCIATIONS
 
-// User.belongsToMany(Meal, {
-//     through: SelectMeal,
-//     as: 'meals_selected',
-//     foreignKey: 'user_id'
-//   });
-
+// Meal belongToMany Users (through SelectMeal)
 Meal.belongsToMany(User, {
     through: SelectMeal,
     foreignKey: 'meal_id'
 });
 
-SelectMeal.belongsTo(User, {
-    foreignKey: 'user_id'
-});
-
-SelectMeal.belongsTo(Meal, {
-    foreignKey: 'meal_id'
-});
-
-User.hasMany(SelectMeal, {
+// Diet belongToMany Meals (through ProductTag)
+User.belongsToMany(Meal, {
+    through: SelectMeal,
     foreignKey: 'user_id'
 });
 
 Meal.hasMany(SelectMeal, {
     foreignKey: 'meal_id'
+});
+
+User.hasMany(SelectMeal, {
+    foreignKey: 'user_id'
 });
 
 
