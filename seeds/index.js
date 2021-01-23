@@ -22,6 +22,9 @@ const seedAll = async () => {
   await seedMealDiets();
   console.log('\n----- MEAL-DIETS SEEDED -----\n');
 
+  await seedUserProfile();
+  console.log('\n----- PROFILES SEEDED -----\n');
+
   process.exit(0);
 };
 
