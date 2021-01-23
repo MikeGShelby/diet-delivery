@@ -13,7 +13,7 @@ const UserProfile = require('./UserProfile');
 //     as: 'meals_selected',
 //     foreignKey: 'user_id'
 //   });
-UserProfile.belongsto(User, {
+UserProfile.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
@@ -69,4 +69,4 @@ Diet.hasMany(MealDiet, {
     foreignKey: 'diet_id'
 });
 
-module.exports = { User, Meal, SelectMeal, Diet, MealDiet };
+module.exports = { User, Meal, SelectMeal, Diet, MealDiet, UserProfile };

@@ -1,5 +1,5 @@
 
-const { userProfile } = require('../models');
+const { UserProfile } = require('../models');
 const userProfileData = [
     {
         user_id: 1,
@@ -20,5 +20,5 @@ const userProfileData = [
         zipCode: '78666'
    },
 ];
-const seedUserProfile = () => userProfile.bulkCreate(userProfileData);
+const seedUserProfile = () => UserProfile.bulkCreate(userProfileData);
 module.exports = seedUserProfile;

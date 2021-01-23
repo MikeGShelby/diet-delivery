@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Meal, User, Comment } = require('../models');
+const { Meal, User} = require('../models');
 const withAuth = require('../utils/auth');
 
 // GET all meals
@@ -28,5 +28,6 @@ router.get('/', withAuth, (req, res) => {
         res.status(500).json(err);
       });
 });
+
 
 module.exports = router;
