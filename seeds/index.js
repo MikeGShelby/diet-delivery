@@ -2,6 +2,7 @@ const seedUsers = require('./user-seeds');
 const seedMeals = require('./meal-seeds');
 const seedDiets = require('./diet-seeds');
 const seedMealDiets = require('./meal-diet-seeds');
+const seedUserProfile = require('./user-profile-seeds');
 
 const sequelize = require('../config/connection');
 
