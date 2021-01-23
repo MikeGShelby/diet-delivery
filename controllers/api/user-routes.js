@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
       });
 });
 
-// GET /api/users/1 (get user by ID)
+// GET get user by ID /api/users/1
 router.get('/:id', (req, res) => {
     User.findOne({
       attributes: { exclude: ['password'] },
@@ -26,13 +26,13 @@ router.get('/:id', (req, res) => {
         {
           model: Meal,
           attributes: ['id', 'title', 'description', 'image', 'created_at'],
-          through: SelectMeal
-          // include: [
-          //   {
-          //     model: Diet,
-          //     attributes: ['id', 'diet_name']
-          //   }
-          // ]
+          through: SelectMeal,
+          include: [
+            {
+              model: Diet,
+              attributes: ['id', 'diet_name']
+            }
+          ]
         }
       ]
     })
