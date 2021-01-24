@@ -61,7 +61,7 @@ router.get('/meal/:id', (req, res) => {
 
       // pass data to template
       res.render('single-meal', {
-        post,
+        meal,
         loggedIn: req.session.loggedIn
       });
     })
