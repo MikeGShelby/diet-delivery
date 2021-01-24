@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Meal, SelectMeal, Diet } = require('../../models');
+const { User, UserProfile, Meal, SelectMeal, Diet } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // GET /api/users (get all users)
@@ -40,12 +40,16 @@ router.get('/:id', (req, res) => {
           model: Meal,
           attributes: ['id', 'title', 'description', 'image', 'created_at'],
           through: SelectMeal,
-          include: [
-            {
-              model: Diet,
-              attributes: ['id', 'diet_name']
-            }
-          ]
+            include: [
+              {
+                model: Diet,
+                attributes: ['id', 'diet_name']
+              }
+            ]
+        },
+        {
+          model: UserProfile,
+          attributes: ['first_name', 'last_name', 'street_address', 'city', 'state', 'zip_code']
         }
       ]
     })

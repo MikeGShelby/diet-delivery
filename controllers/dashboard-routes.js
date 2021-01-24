@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Meal, User, SelectMeal, Diet, MealDiet } = require('../models');
+const { User, UserProfile, Meal, SelectMeal, Diet, MealDiet } = require('../models');
 const withAuth = require('../utils/auth');
 
 // GET user by ID
@@ -26,6 +26,10 @@ router.get('/:id', (req, res) => {
             attributes: ['id', 'diet_name']
           }
         ]
+      },
+      {
+        model: UserProfile,
+        attributes: ['first_name', 'last_name', 'street_address', 'city', 'state', 'zip_code']
       }
     ]
   })
@@ -49,28 +53,5 @@ router.get('/:id', (req, res) => {
     res.status(500).json(err);
   });
 });
-
-
-// GET all meals
-// router.get('/', withAuth, (req, res) => {
-//     Meal.findAll({
-//       attributes: [
-//         'id',
-//         'title',
-//         'description',
-//         'image',
-//         'created_at'
-//       ]
-//     })
-//       .then(dbMealData => {
-//         // serialize data before passing to template
-//         const meals = dbMealData.map(meal => meal.get({ plain: true }));
-//         res.render('dashboard', { meals, loggedIn: true });
-//       })
-//       .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//       });
-// });
 
 module.exports = router;

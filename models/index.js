@@ -3,7 +3,16 @@ const Meal = require('./Meal');
 const SelectMeal = require('./SelectMeal');
 const Diet = require('./Diet');
 const MealDiet = require('./MealDiet');
+const UserProfile = require('./UserProfile');
 
+//USER AND USER PROFILE ASSOCIATIONS
+UserProfile.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+User.hasOne(UserProfile, {
+    foreignKey: 'user_id'
+});
 
 //MEALSELECTION AND MEAL ASSOCIATIONS
 
@@ -58,4 +67,4 @@ Diet.hasMany(MealDiet, {
     foreignKey: 'diet_id'
 });
 
-module.exports = { User, Meal, SelectMeal, Diet, MealDiet };
+module.exports = { User, Meal, SelectMeal, Diet, MealDiet, UserProfile };
