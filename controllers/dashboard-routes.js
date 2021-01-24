@@ -12,7 +12,8 @@ router.get('/:id', (req, res) => {
     },
     attributes: [
       'username',
-      'email'
+      'email',
+      'id'
     ],
     include: [
       {
