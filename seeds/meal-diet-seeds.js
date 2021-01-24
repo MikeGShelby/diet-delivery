@@ -1,4 +1,4 @@
-const { Meal, Diet, MealDiet } = require('../models');
+const { MealDiet } = require('../models');
 
 const mealDietData = [
   {
@@ -44,6 +44,30 @@ const mealDietData = [
   {
     meal_id: 8,
     diet_id: 2
+  },
+  {
+    meal_id: 10,
+    diet_id: 2
+  },
+  {
+    meal_id: 11,
+    diet_id: 2
+  },
+  {
+    meal_id: 11,
+    diet_id: 3
+  },
+  {
+    meal_id: 12,
+    diet_id: 1
+  },
+  {
+    meal_id: 12,
+    diet_id: 2
+  },
+  {
+    meal_id: 12,
+    diet_id: 3
   }
 ];
 
