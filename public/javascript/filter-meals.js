@@ -2,8 +2,6 @@
 
 const buttons=document.querySelectorAll(".filter-button");
 
-
-
     for(let i=0; i<buttons.length; i++){
         buttons[i].addEventListener("click", e => {
             console.log("buttonclicked", e.target.innerText);
