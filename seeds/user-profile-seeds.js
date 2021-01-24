@@ -1,24 +1,26 @@
-
 const { UserProfile } = require('../models');
+
 const userProfileData = [
     {
         user_id: 1,
-        firstName: 'Jennifer',
-        lastName: 'Ortiz',
-        streetAddress: '6305 Emerald Forest Dr',
+        first_name: 'Jennifer',
+        last_name: 'Ortiz',
+        street_address: '6305 Emerald Forest Dr',
         city: 'Austin',
         state: 'TX',
-        zipCode: '78745'
+        zip_code: '78745'
    },
    {
         user_id: 2,
-        firstName: 'Herman',
-        lastName: 'Munster',
-        streetAddress: '1313 Mockingbird Lane',
+        first_name: 'Herman',
+        last_name: 'Munster',
+        street_address: '1313 Mockingbird Lane',
         city: 'San Marcos',
         state: 'TX',
-        zipCode: '78666'
+        zip_code: '78666'
    },
 ];
+
 const seedUserProfile = () => UserProfile.bulkCreate(userProfileData);
+
 module.exports = seedUserProfile;

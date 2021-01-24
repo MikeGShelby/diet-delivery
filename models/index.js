@@ -5,6 +5,14 @@ const Diet = require('./Diet');
 const MealDiet = require('./MealDiet');
 const UserProfile = require('./UserProfile');
 
+//USER AND USER PROFILE ASSOCIATIONS
+UserProfile.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+User.hasOne(UserProfile, {
+    foreignKey: 'user_id'
+});
 
 //MEALSELECTION AND MEAL ASSOCIATIONS
 
@@ -13,9 +21,6 @@ const UserProfile = require('./UserProfile');
 //     as: 'meals_selected',
 //     foreignKey: 'user_id'
 //   });
-UserProfile.belongsTo(User, {
-    foreignKey: 'user_id'
-});
 
 Meal.belongsToMany(User, {
     through: SelectMeal,
