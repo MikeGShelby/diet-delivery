@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 const { User, UserProfile, Meal, SelectMeal, Diet, MealDiet } = require('../models');
 const withAuth = require('../utils/auth');
 
-// GET user by ID
+// GET user by ID (temporarily use req.params.id to get data to display. Once this is complete, refactor this code to obtain user id from login session)
 router.get('/:id', (req, res) => {
   User.findOne({
     where: {
