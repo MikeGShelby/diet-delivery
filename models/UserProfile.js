@@ -7,15 +7,15 @@ class UserProfile extends Model {}
 
 UserProfile.init(
     {
-        firstName: {
+        first_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        lastName: {
+        last_name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        streetAddress: {
+        street_address: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -27,7 +27,7 @@ UserProfile.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        zipCode: {
+        zip_code: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
@@ -36,15 +36,15 @@ UserProfile.init(
             references: {
                 model: 'user',
                 key: 'id'
-            } 
-        } 
-        
+            },
+        onDelete: 'CASCADE'
+        }
     },
     {
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'profile'
+        modelName: 'user_profile'
       }
 );
 

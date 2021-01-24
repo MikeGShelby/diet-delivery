@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Meal, User, SelectMeal, Diet, MealDiet, UserProfile } = require('../models');
+const { Meal, User, SelectMeal, Diet, MealDiet } = require('../models');
 
 // GET homepage
 router.get('/', (req, res) => {
@@ -79,7 +79,5 @@ router.get('/meal/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
-
-
 
 module.exports = router;
