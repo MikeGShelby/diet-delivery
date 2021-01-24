@@ -2,15 +2,18 @@
 {{user.email}}
 {{user.id}}
 
-{{meal.title}}
 {{user.first_name}}
 
-{{#if meals.length}}
+{{#if user.meals.length}}
 <section>
   <h2>Your Meals</h2>
   <ul>
-    {{#each meals as |meal|}}
+    {{#each user.meals as |meal|}}
     <li>
+      {{!-- {{user.meal.title}}
+      {{user.meal.description}}
+      {{user.meal.image}}
+      {{user.meal.diets.diet_name}} --}}
       {{> meal-info meal}}
     </li>
     {{/each}}

@@ -42,6 +42,9 @@ router.get('/:id', (req, res) => {
     // serialize the data
     const user = dbUserData.get({ plain: true });
 
+    // Use this temporarily for testing
+    console.log(user);
+
     // pass data to template
     res.render('dashboard', {
       user,
