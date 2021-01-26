@@ -1,10 +1,10 @@
-<article class="meal-card">
+<article class="meal-card {{#each diets as |diet|}} {{{diet.diet_name}}} {{/each}}" >
   <div class="title">
     <h1><a href="/meal/{{id}}" target="_blank">{{title}}</a></h1>
       <p>({{description}})</p>
       <img src="{{image}}" alt="{{format_img_alt image}}">
       {{#each diets as |diet|}}
-        <li>
+        <li class="">
           {{ diet.diet_name }}
         </li>
       {{/each}}
