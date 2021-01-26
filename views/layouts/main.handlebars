@@ -6,21 +6,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diet Delivery</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+
+  <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+      integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
+      crossorigin="anonymous"
+    />
+
+
 </head>
 
 <body>
   <div class="wrapper">
-     <header>
-        <h1><a href="/">Diet Delivery</a></h1>
+     <header class="header">
+        <h1><a href="/" class="header-logo">
+        Diet Delivery</a></h1>
       <nav>
         {{#if loggedIn}}
-          <a href="/dashboard">dashboard</a>
-          <button id="logout" class="btn-no-style">logout</button>
+          <a href="/dashboard"><i class="fas fa-user user-icon"></i>dashboard</a>
+          <button id="logout" class="btn-no-style"><i class="fas fa-sign-out-alt logout-icon"></i>logout</button>
         {{else}}
           <a href="/login">login</a>
         {{/if}}
       </nav>
     </header>
+
 
     <main>
       {{{ body }}}
