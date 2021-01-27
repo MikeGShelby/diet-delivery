@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Meal, SelectMeal } = require('../../models');
+const { User, UserProfile, Meal, SelectMeal } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // GET /api/users (get all users)
@@ -24,12 +24,18 @@ router.get('/:id', (req, res) => {
       },
       include: [
         {
-          model: Meal,
-          attributes: ['id', 'title', 'description', 'image', 'created_at'],
-          through: SelectMeal,
-          as: 'selected_meals'
+          model: UserProfile,
+          attributes: ['first_name', 'last_name', 'street_address', 'city', 'state', 'zip_code']
         }
       ]
+      // include: [
+      //   {
+      //     model: Meal,
+      //     attributes: ['id', 'title', 'description', 'image', 'created_at'],
+      //     through: SelectMeal,
+      //     as: 'selected_meals'
+      //   }
+      // ]
     })
       .then(dbUserData => {
         if (!dbUserData) {
