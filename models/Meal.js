@@ -3,32 +3,32 @@ const sequelize = require('../config/connection');
 
 // create Meal model
 class Meal extends Model {
-  static selectMeal(body, models) {
-    return models.SelectMeal.create({
-      user_id: body.user_id,
-      post_id: body.meal_id
-    }).then(() => {
-      return Meal.findOne({
-        where: {
-          id: body.meal_id
-        },
-        attributes: [
-          'id',
-          'description',
-          'title',
-          'image',
-          'created_at',
-          'ingredients',
-          'calories',
-          'total_carbs',
-          'total_sugars',
-          'total_fats',
-          'gf',
-          'price'
-        ]
-      });
-    });
-  }
+  // static selectMeal(body, models) {
+  //   return models.SelectMeal.create({
+  //     user_id: body.user_id,
+  //     post_id: body.meal_id
+  //   }).then(() => {
+  //     return Meal.findOne({
+  //       where: {
+  //         id: body.meal_id
+  //       },
+  //       attributes: [
+  //         'id',
+  //         'description',
+  //         'title',
+  //         'image',
+  //         'created_at',
+  //         'ingredients',
+  //         'calories',
+  //         'total_carbs',
+  //         'total_sugars',
+  //         'total_fats',
+  //         'gf',
+  //         'price'
+  //       ]
+  //     });
+  //   });
+  // }
 }
 
 // create fields/columns for Meal model
@@ -51,51 +51,44 @@ Meal.init(
       image: {
         type: DataTypes.STRING
       },
-    },
-    {
-     ingredients: {
-      type: DataTypes.STRING,
-      allowNull: false
-     }
-    },
-    {  calories: {
+        ingredients: {
+          type: DataTypes.STRING,
+          allowNull: false
+      },
+        calories: {
         type: DataTypes.INTEGER,
         allowNull: false
-      }
-    },
-    {  total_carbs: {
+      },
+        total_carbs: {
         type: DataTypes.INTEGER,
         allowNull: false
-      }
-    },
-    {  total_sugars: {
+      },
+        total_sugars: {
         type: DataTypes.INTEGER,
         allowNull: false
-      }
-    },
-    {  total_fats: {
+      },
+        total_fats: {
         type: DataTypes.INTEGER,
         allowNull: false
-      }
-    },
-    {
+      },
+
       gf: {
         type: DataTypes.BOOLEAN,
         default: false
-      }
-    },
-    {
+      },
+
       price: {
         type: DECIMAL,
         allowNull: false
-      }
+      },
     },
     {
       sequelize,
       freezeTableName: true,
       underscored: true,
       modelName: 'meal'
-    }
+      },
+    
 );
 
 module.exports = Meal;
