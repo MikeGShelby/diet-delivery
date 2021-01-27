@@ -23,7 +23,8 @@ class Meal extends Model {
           'total_carbs',
           'total_sugars',
           'total_fats',
-          'gf'
+          'gf',
+          'price'
         ]
       });
     });
