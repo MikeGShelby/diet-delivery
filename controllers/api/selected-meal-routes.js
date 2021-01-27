@@ -2,45 +2,33 @@ const router = require('express').Router();
 const { Meal, User, SelectMeal, Diet } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
-const { selectMeal } = require('../../models/Meal');
 
-// // GET /api/meals/select-meal (get all meal selections)
-// router.get('/', (req, res) => {
-//     SelectMeal.findAll({
-//         attributes: [
-//           'id',
-//           'user_id',
-//           'meal_id'
-//         ]
-//         // include: [{
-//         //   model: User,
-//         //   attributes: [
-//         //       'username'
-//         //   ]
-//         // }],
-//         // include: [{
-//         //   model: Meal,
-//         //   attributes: [
-//         //       'title'
-//         //   ]
-//         // }]
-//     })
-//       .then(dbSelectedMealData => res.json(dbSelectedMealData))
-//       .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//       });
-// });
 
-// // PUT /api/meals/select-meal (select a meal, WITHOUT login auth)
-// router.post('/', (req, res) => {
-//     SelectMeal.create({
-//         user_id: req.body.user_id,
-//         meal_id: req.body.meal_id
-//     })
-//         .then(dbSelectedMealData => res.json(dbSelectedMealData))
-//         .catch(err => res.json(err));
-// });
+// GET /api/meals/select-meal (get all meal selections)
+router.get('/', (req, res) => {
+    SelectMeal.findAll({
+        attributes: [
+          'user_id',
+          'meal_id'
+        ]
+        
+    })
+      .then(dbSelectedMealData => res.json(dbSelectedMealData))
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+
+// PUT /api/meals/select-meal (select a meal, WITHOUT login auth)
+router.post('/', (req, res) => {
+    SelectMeal.create({
+        user_id: req.body.user_id,
+        meal_id: req.body.meal_id
+    })
+        .then(dbSelectedMealData => res.json(dbSelectedMealData))
+        .catch(err => res.json(err));
+});
 
 // // DELETE /api/meals/select-meal/:id (delete a meal selection, WITHOUT login auth)
 // router.delete('/:id', (req, res) => {

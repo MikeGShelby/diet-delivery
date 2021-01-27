@@ -42,8 +42,11 @@ Meal.init(
         allowNull: false
       },
       image: {
-        type: DataTypes.STRING
+        type: DataTypes.BLOB
       },
+      price: {
+        type: DataTypes.DECIMAL
+      }
     },
     {
       sequelize,
