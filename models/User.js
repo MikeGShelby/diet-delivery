@@ -21,7 +21,11 @@ User.init(
         primaryKey: true,
         autoIncrement: true
       },
-      username: {
+      first_name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      last_name:{
         type: DataTypes.STRING,
         allowNull: false
       },
@@ -39,8 +43,25 @@ User.init(
         validate: {
           len: [4]
         }
-      }
+      },
+    
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    zip: {
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    }
+  },
 
     // TABLE CONFIGURATION OPTIONS GO HERE (https://sequelize.org/v5/manual/models-definition.html#configuration))
     {
