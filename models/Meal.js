@@ -1,4 +1,4 @@
-const { Model, DataTypes, BOOLEAN } = require('sequelize');
+const { Model, DataTypes, BOOLEAN, DECIMAL } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // create Meal model
@@ -81,6 +81,12 @@ Meal.init(
       gf: {
         type: DataTypes.BOOLEAN,
         default: false
+      }
+    },
+    {
+      price: {
+        type: DECIMAL,
+        allowNull: false
       }
     },
     {
