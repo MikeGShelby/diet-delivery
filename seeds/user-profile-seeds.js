@@ -19,6 +19,15 @@ const userProfileData = [
      state: 'TX2',
      zip_code: '22222'
    },
+   {
+    user_id: 3,
+    first_name: 'FirstName3',
+    last_name: 'LastName3',
+    street_address: '3333 Street Dr',
+    city: 'City3',
+    state: 'TX3',
+    zip_code: '33333'
+  }
 ];
 
 const seedUserProfile = () => UserProfile.bulkCreate(userProfileData);
