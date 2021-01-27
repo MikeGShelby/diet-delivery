@@ -1,12 +1,25 @@
 const router = require('express').Router();
-const { User, UserProfile, Meal, SelectMeal } = require('../../models');
+const { User, UserProfile, Meal, SelectMeal, Diet } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // GET /api/users (get all users)
 router.get('/', (req, res) => {
     // Access our User model and run .findAll() method)
     User.findAll({
-      attributes: { exclude: ['password'] }
+      attributes: { exclude: ['password'] },
+      include: [
+        {
+          model: Meal,
+          attributes: ['id', 'title', 'description', 'image', 'created_at'],
+          through: SelectMeal,
+          include: [
+            {
+              model: Diet,
+              attributes: ['id', 'diet_name']
+            }
+          ]
+        }
+      ]
     })
       .then(dbUserData => res.json(dbUserData))
       .catch(err => {
@@ -15,7 +28,7 @@ router.get('/', (req, res) => {
       });
 });
 
-// GET /api/users/1 (get user by ID)
+// GET get user by ID /api/users/1
 router.get('/:id', (req, res) => {
     User.findOne({
       attributes: { exclude: ['password'] },
@@ -24,18 +37,21 @@ router.get('/:id', (req, res) => {
       },
       include: [
         {
+          model: Meal,
+          attributes: ['id', 'title', 'description', 'image', 'created_at'],
+          through: SelectMeal,
+            include: [
+              {
+                model: Diet,
+                attributes: ['id', 'diet_name']
+              }
+            ]
+        },
+        {
           model: UserProfile,
           attributes: ['first_name', 'last_name', 'street_address', 'city', 'state', 'zip_code']
         }
       ]
-      // include: [
-      //   {
-      //     model: Meal,
-      //     attributes: ['id', 'title', 'description', 'image', 'created_at'],
-      //     through: SelectMeal,
-      //     as: 'selected_meals'
-      //   }
-      // ]
     })
       .then(dbUserData => {
         if (!dbUserData) {

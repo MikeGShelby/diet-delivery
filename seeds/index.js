@@ -1,8 +1,10 @@
 const seedUsers = require('./user-seeds');
+const seedUserProfile = require('./user-profile-seeds');
 const seedMeals = require('./meal-seeds');
 const seedDiets = require('./diet-seeds');
 const seedMealDiets = require('./meal-diet-seeds');
-const seedUserProfile = require('./user-profile-seeds');
+const seedSelectedMeals = require('./selected-meal-seeds');
+
 
 const sequelize = require('../config/connection');
 
@@ -13,6 +15,9 @@ const seedAll = async () => {
   await seedUsers();
   console.log('\n----- USERS SEEDED -----\n');
 
+  await seedUserProfile();
+  console.log('\n----- PROFILES SEEDED -----\n');
+
   await seedMeals();
   console.log('\n----- MEALS SEEDED -----\n');
 
@@ -22,8 +27,8 @@ const seedAll = async () => {
   await seedMealDiets();
   console.log('\n----- MEAL-DIETS SEEDED -----\n');
 
-  await seedUserProfile();
-  console.log('\n----- PROFILES SEEDED -----\n');
+  await seedSelectedMeals();
+  console.log('\n----- SELECTED-MEALS SEEDED -----\n');
 
   process.exit(0);
 };
