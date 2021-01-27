@@ -55,6 +55,10 @@ Meal.init(
           type: DataTypes.STRING,
           allowNull: false
       },
+        protien: {
+          type: DataTypes.INTEGER,
+          allowNull: false
+      },
         calories: {
         type: DataTypes.INTEGER,
         allowNull: false
