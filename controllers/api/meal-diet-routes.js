@@ -11,13 +11,12 @@ router.get('/', (req, res) => {
         'id',
         'meal_id',
         'diet_id',
-        'image',
         'created_at'
       ],
       include: [
         {
           model: Meal,
-          attributes: ['title']
+          attributes: ['title', 'image']
         }
       ],
       include: [

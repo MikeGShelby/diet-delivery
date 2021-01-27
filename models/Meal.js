@@ -51,36 +51,34 @@ Meal.init(
       image: {
         type: DataTypes.STRING
       },
-        ingredients: {
+      ingredients: {
           type: DataTypes.STRING,
           allowNull: false
       },
-        protien: {
+      calories: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      fat: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      protein: {
           type: DataTypes.INTEGER,
           allowNull: false
       },
-        calories: {
+        total_carbohydrate: {
         type: DataTypes.INTEGER,
         allowNull: false
       },
-        total_carbs: {
+        sugars: {
         type: DataTypes.INTEGER,
         allowNull: false
       },
-        total_sugars: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-        total_fats: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-
       gf: {
         type: DataTypes.BOOLEAN,
         default: false
       },
-
       price: {
         type: DECIMAL,
         allowNull: false
@@ -92,7 +90,7 @@ Meal.init(
       underscored: true,
       modelName: 'meal'
       },
-    
+
 );
 
 module.exports = Meal;

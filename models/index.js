@@ -16,13 +16,13 @@ User.hasOne(UserProfile, {
 
 //MEALSELECTION AND MEAL ASSOCIATIONS
 
-// Meal belongToMany Users (through SelectMeal)
+// Meal belongsToMany Users (through SelectMeal)
 Meal.belongsToMany(User, {
     through: SelectMeal,
     foreignKey: 'meal_id'
 });
 
-// Diet belongToMany Meals (through ProductTag)
+// User belongsToMany Meals (through SelectMeal)
 User.belongsToMany(Meal, {
     through: SelectMeal,
     foreignKey: 'user_id'
@@ -45,7 +45,7 @@ Meal.belongsToMany(Diet, {
     foreignKey: 'meal_id'
 });
 
-// Diet belongToMany Meals (through ProductTag)
+// Diet belongsToMany Meals (through MealDiet)
 Diet.belongsToMany(Meal, {
     through: MealDiet,
     foreignKey: 'diet_id'

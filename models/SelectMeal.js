@@ -22,7 +22,6 @@ SelectMeal.init(
       meal_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-
         references: {
           model: 'meal',
           key: 'id'
