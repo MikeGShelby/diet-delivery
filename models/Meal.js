@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, BOOLEAN } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // create Meal model
@@ -17,7 +17,13 @@ class Meal extends Model {
           'description',
           'title',
           'image',
-          'created_at'
+          'created_at',
+          'ingredients',
+          'calories',
+          'total_carbs',
+          'total_sugars',
+          'total_fats',
+          'gf'
         ]
       });
     });
@@ -44,6 +50,38 @@ Meal.init(
       image: {
         type: DataTypes.STRING
       },
+    },
+    {
+     ingredients: {
+      type: DataTypes.STRING,
+      allowNull: false
+     }
+    },
+    {  calories: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      }
+    },
+    {  total_carbs: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      }
+    },
+    {  total_sugars: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      }
+    },
+    {  total_fats: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      }
+    },
+    {
+      gf: {
+        type: DataTypes.BOOLEAN,
+        default: false
+      }
     },
     {
       sequelize,
