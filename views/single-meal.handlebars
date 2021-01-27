@@ -1,15 +1,62 @@
-{{> meal-info meal }}
-<img src="{{image}}" >
-<img src="images/meal-image-2.jpg">
+<main class="single-meal-container">
 
-{{#if loggedIn}}
-  <div>
-    <button type="button" class="upvote-btn">Select Meal</button>
-  </div>
-</form>
-{{/if}}
+  <section class="single-meal-image">
+   <img src="{{meal.image}}" >
+  </section>
 
-{{#if loggedIn}}
-  <script src="/javascript/comment.js"></script>
-  <script src="/javascript/upvote.js"></script>
-{{/if}}
+  <section class="single-meal-details">
+    <h3>{{meal.title}}</h3>
+    <p>{{meal.description}}</p>
+
+    {{!-- HARD-CODED BUTTON. THIS SHOULD BE DELETED ONCE LOGIN FUNCTIONALITY IS WORKING PROPERLY --}}
+    <form>
+        <div>
+          <button type="button" class="upvote-btn">Add Meal</button>
+        </div>
+    </form>
+
+    {{!-- CONDITIONAL BUTTON. THIS SHOULD BE USED ONCE LOGIN FUNCTIONALITY IS WORKING PROPERLY --}}
+    {{#if loggedIn}}
+      <form>
+        <div>
+          <button type="button" class="upvote-btn">Select Meal</button>
+        </div>
+      </form>
+      {{/if}}
+
+    <ul>
+      <li><p>{{meal.calories}}</p>
+          <p>Calories</p>
+      </li>
+      <li><p>{{meal.fat}}</p>
+          <p>Fat</p>
+      </li>
+      <li><p>{{meal.protein}}</p>
+          <p>Protein</p>
+      </li>
+      <li><p>{{meal.total_carbohydrate}}</p>
+          <p>Total Carbs</p>
+      </li>
+      <li><p>{{meal.total_carbohydrate}}</p>
+          <p>Sugars</p>
+      </li>
+    </ul>
+
+    {{#if meal.gf}}
+      <p>Gluten Free</p>
+    {{/if}}
+
+    <details>
+      <summary>Ingredients</summary>
+        <p>{{meal.ingredients}}</p>
+    </details>
+
+  </section>
+
+
+
+  {{#if loggedIn}}
+    <script src="/javascript/comment.js"></script>
+    <script src="/javascript/upvote.js"></script>
+  {{/if}}
+</main>

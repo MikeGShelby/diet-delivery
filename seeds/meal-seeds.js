@@ -106,7 +106,7 @@ const mealData = [
     price: 9.50
   },
   {
-    title: 'Meal Item 8',
+    title: 'Meal Item 9',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam posuere posuere.',
     image: 'images/meal-image.jpg',
     ingredients: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam posuere posuere',

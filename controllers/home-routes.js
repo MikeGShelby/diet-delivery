@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
       'description',
       'title',
       'image',
+      'price',
       'created_at'
     ],
     include: [
@@ -52,11 +53,20 @@ router.get('/meal/:id', (req, res) => {
       id: req.params.id
     },
     attributes: [
-      'id',
-      'description',
-      'title',
-      'image',
-      'created_at'
+        'id',
+        'title',
+        'description',
+        'image',
+        'ingredients',
+        'calories',
+        'fat',
+        'protein',
+        'total_carbohydrate',
+        'sugars',
+        'gf',
+        'price',
+        'created_at',
+        [sequelize.literal('(SELECT COUNT(*) FROM selected_meal WHERE meal.id = selected_meal.meal_id)'), 'meal_selected']
     ]
   })
     .then(dbMealData => {

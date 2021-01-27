@@ -19,7 +19,7 @@ MealDiet.init(
         key:'id'
       }
     },
-      diet_id: {
+    diet_id: {
         type: DataTypes.INTEGER,
         references: {
           model: 'diet',

@@ -67,11 +67,11 @@ Meal.init(
           type: DataTypes.INTEGER,
           allowNull: false
       },
-        total_carbohydrate: {
+      total_carbohydrate: {
         type: DataTypes.INTEGER,
         allowNull: false
       },
-        sugars: {
+      sugars: {
         type: DataTypes.INTEGER,
         allowNull: false
       },
@@ -82,7 +82,7 @@ Meal.init(
       price: {
         type: DECIMAL,
         allowNull: false
-      },
+      }
     },
     {
       sequelize,

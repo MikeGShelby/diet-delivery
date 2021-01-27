@@ -24,7 +24,7 @@ const selectMealData = [
   {
     user_id: 3,
     meal_id: 4
-  },
+  }
 ];
 
 const seedSelectedMeals = () => SelectMeal.bulkCreate(selectMealData);

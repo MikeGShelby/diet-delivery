@@ -45,7 +45,7 @@ router.get('/:id', (req, res) => {
         'calories',
         'fat',
         'protein',
-        ' total_carbohydrate',
+        'total_carbohydrate',
         'sugars',
         'gf',
         'price',

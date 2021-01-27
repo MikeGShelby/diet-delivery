@@ -46,27 +46,11 @@ const mealDietData = [
     diet_id: 2
   },
   {
-    meal_id: 10,
+    meal_id: 9,
     diet_id: 2
   },
   {
-    meal_id: 11,
-    diet_id: 2
-  },
-  {
-    meal_id: 11,
-    diet_id: 3
-  },
-  {
-    meal_id: 12,
-    diet_id: 1
-  },
-  {
-    meal_id: 12,
-    diet_id: 2
-  },
-  {
-    meal_id: 12,
+    meal_id: 9,
     diet_id: 3
   }
 ];
