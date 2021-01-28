@@ -147,6 +147,12 @@ button:hover {
     background-color: #3486eb;
 }
 
+/* MEAL CARDS */
+.meal-list {
+display: flex;
+flex-wrap:wrap;
+}
+
 /* SINGLE MEAL PAGE STYLES */
 .single-meal-container {
     display: flex;
