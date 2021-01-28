@@ -1,6 +1,7 @@
 <article class="meal-card {{#each diets as |diet|}} {{{diet.diet_name}}} {{/each}}" >
+
   <div class="title">
-    <h1><a href="/meal/{{id}}" target="_blank">{{title}}</a></h1>
+    <h1><a href="/meal/{{id}}">{{title}}</a></h1>
       <p>({{description}})</p>
       <img src="{{image}}" alt="{{format_img_alt image}}">
       {{#each diets as |diet|}}
@@ -9,12 +10,6 @@
         </li>
       {{/each}}
   </div>
-
-  {{#if loggedIn}}
-    <div>
-      <button type="button" class="upvote-btn">Select Meal</button>
-    </div>
-  {{/if}}
 
   <div class="meta">
     {{selected_meal}}
