@@ -289,3 +289,10 @@ footer {
 .hidden {
     visibility: hidden;
 }
+
+.food-image {
+    height: 400px;
+    width: 500px;
+    object-fit: cover;
+    
+}
