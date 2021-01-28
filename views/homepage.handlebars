@@ -10,13 +10,14 @@
   </div>
 </section>
 
-<ul class="meal-list">
+<main class="meal-list">
   {{#each meals as |meal|}}
-    <li>
+
       {{> meal-info meal }}
-    </li>
+
   {{/each}}
-</ul>
+</main>
+
 <section class="filtered_containers">
 
 </section>

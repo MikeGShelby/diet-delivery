@@ -149,8 +149,19 @@ button:hover {
 
 /* MEAL CARDS */
 .meal-list {
-display: flex;
-flex-wrap:wrap;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.meal-card {
+    background-color: rgb(235, 235, 148);
+    width: 500px;
+    padding: 20px;
+    margin: 1%;
+}
+
+.meal-card-image {
+    max-width: 90%;
 }
 
 /* SINGLE MEAL PAGE STYLES */
