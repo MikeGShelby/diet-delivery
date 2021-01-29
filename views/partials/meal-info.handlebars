@@ -1,4 +1,4 @@
-<article class="meal-card">
+<article class="meal-card {{#each diets as |diet|}} {{{diet.diet_name}}} {{/each}}">
 
     <img src="{{image}}" alt="{{format_img_alt image}}" class="meal-card-image">
 

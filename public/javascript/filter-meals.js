@@ -20,7 +20,7 @@ let FODMAP =[...document.querySelectorAll('.FODMAP')];
 let foodarray = [renal, diabetic, FODMAP]
 
 function buttonFilter(foodPlan) {
- 
+
     console.log(foodarray)
     let filterTerm;
     foodarray.map(i => {
@@ -30,7 +30,7 @@ function buttonFilter(foodPlan) {
     })
     // let foodContainers = [...document.querySelectorAll(`.${foodPlan}`)];
     // console.log(foodContainers);
-    const filteredContainer = document.querySelector('.filtered_containers')
+    const filteredContainer = document.querySelector('.filtered-list')
     filteredContainer.innerHTML = '';
     const currentContainers = document.querySelector('.meal-list')
 
@@ -39,5 +39,5 @@ function buttonFilter(foodPlan) {
     filterTerm.map(meal => {
         filteredContainer.append(meal)
     })
-}  
+}
 

@@ -148,7 +148,7 @@ button:hover {
 }
 
 /* MEAL CARDS */
-.meal-list {
+.meal-list, .filtered-list {
     width:100vw;
     display: flex;
     flex-wrap: wrap;
