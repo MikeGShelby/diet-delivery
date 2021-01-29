@@ -1,10 +1,11 @@
 :root {
     --header-logo-font: 'Fugaz One', cursive;
+    --cta-font: 'Roboto Condensed', sans-serif;
 }
 
 * {
     box-sizing: border-box;
-  }
+}
 
 body, html {
     height: 100%;
@@ -12,30 +13,27 @@ body, html {
     margin: 0;
     font-family: sans-serif;
     color: #333;
+    background: rgb(243,248,250);
+    background: linear-gradient(98deg, rgba(243,248,250,1) 0%, rgba(220,224,226,1) 100%);
 }
 
 .wrapper {
     width: 100%;
     min-height: 100%;
-    /* max-width: 1200px; */
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
 }
 
+/* HEADER STYLES */
 .header {
     /* background-color: rgb(65, 64, 64); */
     background: rgb(3,30,31);
     background: radial-gradient(circle, rgba(3,30,31,1) 0%, rgba(27,117,124,1) 0%, rgba(23,98,107,1) 37%, rgba(12,44,50,1) 100%);
-
-
-    box-shadow: 3px 4px 5px rgb(41, 40, 40);
+    box-shadow: 3px 3px 4px rgba(41, 40, 40, .7);
     z-index: 1;
     position: fixed;
     top: 0;
     width: 100%;
     max-height: 10%;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,6 +44,24 @@ body, html {
     font-family: 'Fugaz One', cursive;
     color: white;
     font-size:.85em;
+    text-decoration: none;
+    transition: color .9s;
+}
+
+.header nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin: 10px;
+    transition: color .5s;
+}
+
+.header a:hover {
+    color: #85f5e6;
+}
+
+.header nav a:hover {
+    text-decoration: underline;
 }
 
 .user-icon, .logout-icon {
@@ -53,35 +69,49 @@ body, html {
     padding-right: 5%;
 }
 
-main {
-    flex: 1;
+.main-body {
+    display: flex;
+    flex-direction: column;
+    /* flex: 1; */
 }
 
 .hero {
-  background-image: url('/images/header-image.jpg');
-  background-color: gray;
-  background-position: center;
-  width: auto;
-  height: 350px;
-  margin-top: 4%;
+    background-image: url('/images/header-image.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment:fixed;
+    /* height: 80vh; */
+    margin-top: 4%;
+
 }
 
 .cta {
-  background-color: rgba(0,0,0,0.25);
-  width: 100%;
-  color: white;
-  display: center;
-  height: 350px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    background-color: rgba(0,0,0,0.25);
+    width: 100%;
+    height: 80vh;
+    color: white;
+    display: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--cta-font);
+    text-align: center;
+}
 
+.cta-title-text {
+    font-size: 2rem;
+    width: 30%;
+    /* text-align: center; */
+}
+
+.cta-form-label {
+    font-size: 1.7rem;
 }
 
 .cta form {
     width:100%;
-    text-align: center;
 }
 
 .cta h2{
@@ -121,16 +151,7 @@ main {
     box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
-a {
-  text-decoration: none;
-  color: #225ca3;
-  font-weight: bold;
-  transition: color .1s;
-}
 
-a:hover {
-    color: #3486eb;
-}
 
 button {
     background-color: #225ca3;
@@ -149,11 +170,12 @@ button:hover {
 
 /* MEAL CARDS */
 .meal-list, .filtered-list {
-    width:100vw;
+    /* width:100vw; */
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    margin: 80px 40px;
 }
 
 .meal-card {
@@ -161,18 +183,21 @@ button:hover {
     grid-template-columns:300px;
     grid-template-rows: 210px 210px 80px;
     grid-template-areas:"image" "text" "diets";
-
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: var(--cta-font);
+    color: rgb(90, 89, 89);
     border-radius: 4%;
-
     background-color:white;
-    box-shadow: 2px 2px 15px rgba(0,0,0,0.7);
-    text-align: center;
+    text-align: left;
     margin: 1%;
+    text-decoration: none;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    transform: scale(1);
+    transition: box-shadow .2s, transform .2s;
 }
 
 .meal-card:hover {
-    box-shadow: 4px 4px 15px rgba(0,0,0,0.9);
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.6);
+    transform: scale(1.02);
 }
 
 .meal-card-image {
@@ -182,13 +207,78 @@ button:hover {
 }
 
 .meal-card-text {
-    grid-area:text;
-    padding: 0px 2%;
+    grid-area: text;
+    padding: 0px 20px;
 }
 
 .meal-card-diets {
     grid-area: diets;
+    padding: 0px 20px;
 }
+
+/* LOGIN FORM STYLES */
+.login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width:250px; */
+    margin-top: 100px;
+    flex-direction: column;
+}
+
+.login-form, .signup-form {
+    background-color: rgb(253, 253, 253);
+    padding: 20px;
+    border-radius: 3px;
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.2);
+    min-width: 30vw;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-items: stretch;
+    align-items: center;
+}
+
+.login-form > div, .signup-form > div {
+    padding: 10px;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-items: stretch;
+}
+
+.login-form input, .signup-form input {
+    color: rgb(219, 219, 219);
+    font-size: 1.06rem;
+    border: 2px solid rgb(219, 219, 219);
+    padding: 15px;
+    border-radius: 3px;
+    min-width: 20rem;
+}
+
+.login-form button, .signup-form button {
+    font-size: 1.06rem;
+    padding: 15px;
+    /* background: rgb(64,222,169); */
+    background: linear-gradient(343deg, rgba(64,222,169,1) 0%, rgba(51,187,142,1) 100%);
+    min-width: 20rem;
+    transition: background-image 1s;
+}
+
+.login-form button:hover, .signup-form button:hover {
+    /* background: rgb(62,189,146); */
+    background: linear-gradient(343deg, rgba(62,189,146,1) 0%, rgba(29,112,85,1) 100%);
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid #3486eb;
+}
+
+form label {
+    display: block;
+}
+
 
 /* SINGLE MEAL PAGE STYLES */
 .single-meal-container {
@@ -208,29 +298,6 @@ button:hover {
     padding: 20px;
 }
 
-textarea, input {
-    padding: .5%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-textarea:focus, input:focus {
-    outline: none;
-    border: 1px solid #3486eb;
-}
-
-textarea {
-    min-width: 40%;
-    min-height: 100px;
-}
-
-form > div {
-    margin-bottom: 2%;
-}
-
-form label {
-    display: block;
-}
 
 
 .btn-no-style {
@@ -251,29 +318,6 @@ form label {
     color: #3486eb;
 }
 
-.delete-post-btn {
-    background-color: #d41414;
-}
-
-.delete-post-btn:hover {
-    background-color: #ff643d;
-}
-
-.post {
-    margin-bottom: 2%;
-    line-height: 150%;
-}
-
-.post .title span {
-    font-style: italic;
-    font-size: 90%;
-    color: #7d7d7d;
-}
-
-.edit-link {
-    display: block;
-    margin: -1.5% 0 2% 0;
-}
 
 .upvote-btn {
     background-color: #197d0f;
@@ -282,33 +326,6 @@ form label {
 
 .upvote-btn:hover {
     background-color: #1f9c13;
-}
-
-.comment-form {
-    margin-bottom: 5%;
-}
-
-.comment {
-    padding: 1%;
-    margin-bottom: 1%;
-}
-
-.comment:nth-child(odd) {
-    background-color: #fff5eb;
-}
-
-.comment .meta {
-    font-size: 90%;
-    margin-bottom: .5%;
-    opacity: .6;
-}
-
-.new-post-form input {
-    width: 300px;
-}
-
-.edit-post-form {
-    margin-bottom: 5%;
 }
 
 footer {

@@ -5,7 +5,6 @@ const { User, UserProfile } = require('../../models');
 router.get('/user', (req, res) => {
     User.findAll({
       attributes: [
-        'username',
         'email'
       ],
       include: [
@@ -28,7 +27,7 @@ router.get('/user', (req, res) => {
         res.status(500).json(err);
       });
   });
-  
+
   // GET single-user profile
   router.get('/user/:id', (req, res) => {
    User.findOne({
@@ -36,7 +35,6 @@ router.get('/user', (req, res) => {
         id: req.params.id
       },
       attributes: [
-        'username',
         'email'
       ],
       include: [
@@ -51,10 +49,10 @@ router.get('/user', (req, res) => {
           res.status(404).json({ message: 'No user found with this id' });
           return;
         }
-  
+
         // serialize the data
         const user = dbUserData.get({ plain: true });
-  
+
         // pass data to template
         res.render('single-user', {
           user,
@@ -66,5 +64,5 @@ router.get('/user', (req, res) => {
         res.status(500).json(err);
       });
   });
-  
+
   module.exports = router;

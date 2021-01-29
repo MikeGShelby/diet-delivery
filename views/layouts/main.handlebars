@@ -11,39 +11,42 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
 
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
   <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
       integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
       crossorigin="anonymous"
     />
-
-
 </head>
 
 <body>
   <div class="wrapper">
+
      <header class="header">
         <h1><a href="/" class="header-logo">
         Diet Delivery</a></h1>
       <nav>
         {{#if loggedIn}}
-          <a href="/dashboard"><i class="fas fa-user user-icon"></i>dashboard</a>
-          <button id="logout" class="btn-no-style"><i class="fas fa-sign-out-alt logout-icon"></i>logout</button>
+          <a href="/dashboard"><i class="fas fa-user user-icon"></i>Dashboard</a>
+          <button id="logout" class="btn-no-style"><i class="fas fa-sign-out-alt logout-icon"></i>Log Out</button>
         {{else}}
-          <a href="/login">login</a>
+          <a href="/login">Log In</a>
+          <a href="/signup">Sign Up</a>
         {{/if}}
       </nav>
     </header>
 
 
-    <main>
+    <main class="main-body">
       {{{ body }}}
     </main>
 
-    <footer>
-      Thanks for visiting!
-    </footer>
+    {{!-- <footer class="footer">
+
+    </footer> --}}
   </div>
 
   {{#if loggedIn}}

@@ -46,6 +46,16 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// GET signup page
+router.get('/signup', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('signup');
+});
+
 // GET single-meal page
 router.get('/meal/:id', (req, res) => {
   Meal.findOne({

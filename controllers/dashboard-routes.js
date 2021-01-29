@@ -11,7 +11,6 @@ router.get('/:id', (req, res) => {
       id: req.params.id
     },
     attributes: [
-      'username',
       'email',
       'id'
     ],
