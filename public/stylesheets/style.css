@@ -60,7 +60,7 @@ main {
 .hero {
   background-image: url('/images/header-image.jpg');
   background-color: gray;
-  position: center;
+  background-position: center;
   width: auto;
   height: 350px;
   margin-top: 4%;
@@ -327,5 +327,5 @@ footer {
     height: 400px;
     width: 500px;
     object-fit: cover;
-    
+
 }
