@@ -34,10 +34,6 @@ const mealDietData = [
     diet_id: 2
   },
   {
-    meal_id: 7,
-    diet_id: 3
-  },
-  {
     meal_id: 8,
     diet_id: 1
   },

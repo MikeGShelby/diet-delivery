@@ -1,15 +1,24 @@
-<article class="meal-card {{#each diets as |diet|}} {{{diet.diet_name}}} {{/each}}" >
-    <img src="{{image}}" alt="{{format_img_alt image}}" class="meal-card-image">
-    <h1 class="meal-title"><a href="/meal/{{id}}">{{title}}</a></h1>
-    <p>({{description}})</p>
+<article class="meal-card">
 
-    {{#each diets as |diet|}}
-      <li class="">
-        {{ diet.diet_name }}
-      </li>
-    {{/each}}
+    <img src="{{image}}" alt="{{format_img_alt image}}" class="meal-card-image">
+
+    <div class="meal-card-text">
+      <h3 class="meal-title"><a href="/meal/{{id}}">{{title}}</a></h3>
+      <p>({{description}})</p>
+    </div>
+
+    {{#if diets.length}}
+      <div class="meal-card-diets">
+        {{#each diets as |diet|}}
+            <div class="diet-tag">
+              {{ diet.diet_name }}
+            </div>
+        {{/each}}
+      </div>
+    {{/if}}
 
     <div class="meta">
       {{selected_meal}}
     </div>
+
 </article>
