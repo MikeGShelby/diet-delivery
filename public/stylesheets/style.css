@@ -157,10 +157,14 @@ button:hover {
 }
 
 .meal-card {
-    display: grid;
-    grid-template-columns:300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    /* grid-template-columns:300px;
     grid-template-rows: 210px 210px 80px;
-    grid-template-areas:"image" "text" "diets";
+    grid-template-areas:"image" "text" "diets"; */
 
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     border-radius: 2px;
@@ -174,16 +178,29 @@ button:hover {
 }
 
 .meal-card-image {
-    max-width: 100%;
-    grid-area: image;
+    width: 100%;
+    object-fit: contain;
+    overflow: hidden;
+    height: 210px;
+    
+
+}
+
+
+.meal-card-image img{
+    min-height: 210px;
+    object-fit: contain;
+    width: 100%;
 }
 
 .meal-card-text {
-    grid-area:text;
+    height: 150px;
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 
 .meal-card-diets {
-    grid-area: diets;
+    height: 75px;
 }
 
 /* SINGLE MEAL PAGE STYLES */
@@ -197,11 +214,34 @@ button:hover {
 .single-meal-image {
     background-color: rgb(248, 238, 193);
     padding: 20px;
+    flex: 0.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.single-meal-details ul{
+    list-style-type: none;
+    padding: 0; 
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px auto;
+}
+.single-meal-details h3{
+    font-size: 30px;
+    margin-top: 0;
+}
+
+.single-meal-image img{
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
 }
 
 .single-meal-details {
-    background-color: rgb(127, 127, 219);
+    background-color: #fff;
     padding: 20px;
+    flex: 0.5;
 }
 
 textarea, input {
