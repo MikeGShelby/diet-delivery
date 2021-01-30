@@ -112,7 +112,6 @@ router.post('/:id', (req, res) => {
 });
 
 
-
 // POST /api/users (user login route)
 router.post('/login', (req, res) => {
   User.findOne({
@@ -143,6 +142,7 @@ router.post('/login', (req, res) => {
   });
 });
 
+// POST /api/users (user logout route)
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -155,15 +155,8 @@ router.post('/logout', (req, res) => {
 
 });
 
-// PUT /api/users/1 (update user info)
+// PUT /api/users/id (update user email or password)
 router.put('/:id', withAuth, (req, res) => {
-    // expects { email: 'lernantino@gmail.com', password: 'password1234'}
-    /* FORMAT
-        {
-          "email": "email1@email.com",
-          "password": "password1"
-        }
-    */
     // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
     User.update(req.body, {
       individualHooks: true,

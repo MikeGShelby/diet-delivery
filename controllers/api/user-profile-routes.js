@@ -2,67 +2,30 @@ const router = require('express').Router();
 const { User, UserProfile } = require('../../models');
 
 
-router.get('/user', (req, res) => {
-    User.findAll({
-      attributes: [
-        'email'
-      ],
-      include: [
-        {
-          model: UserProfile ,
-          attributes: ['display_name', 'first_name', 'last_name', 'street_address', 'city', 'state', 'zip_code' ]
-        }
-      ]
+// PUT /api/users/profile/id (update user name and address info, WITH auth)
+// router.put('/:id', withAuth, (req, res) => { }
+
+// PUT /api/users/profile/id (update user name and address info, WITHOUT auth)
+router.put('/:id', (req, res) => {
+  // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
+  UserProfile.update(req.body, {
+    individualHooks: true,
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbUserProfileData => {
+      if (!dbUserProfileData[0]) {
+        res.status(404).json({ message: 'No user found with this id' });
+        return;
+      }
+      res.json(dbUserProfileData);
     })
-      .then(dbUserData => {
-        // pass all post objects into the homepage template
-        const profiles = dbUserData.map(profile => profile.get({ plain: true }));
-        // Added loggedIn data here, as homepage was not properly displaying conditional login/logout link
-        res.render('homepage', {
-          profiles,
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
-  // GET single-user profile
-  router.get('/user/:id', (req, res) => {
-   User.findOne({
-      where: {
-        id: req.params.id
-      },
-      attributes: [
-        'email'
-      ],
-      include: [
-        {
-          model: UserProfile,
-          attributes: ['firstName', 'lastName', 'streetAddress', 'city', 'state', 'zipCode' ]
-        }
-      ]
-    })
-      .then(dbUserData => {
-        if (!dbUserData) {
-          res.status(404).json({ message: 'No user found with this id' });
-          return;
-        }
 
-        // serialize the data
-        const user = dbUserData.get({ plain: true });
-
-        // pass data to template
-        res.render('single-user', {
-          user,
-          loggedIn: req.session.loggedIn
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
-
-  module.exports = router;
+module.exports = router;
