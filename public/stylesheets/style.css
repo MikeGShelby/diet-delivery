@@ -49,9 +49,11 @@ body, html {
 }
 
 .header nav a {
-    text-decoration: none;
+    font-size: 1.25rem;
     color: white;
     font-weight: bold;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
     margin: 10px;
     transition: color .5s;
 }
@@ -83,7 +85,6 @@ body, html {
     background-attachment:fixed;
     /* height: 80vh; */
     margin-top: 4%;
-
 }
 
 .cta {
@@ -137,18 +138,25 @@ body, html {
     padding: 2%;
     margin: .5%;
     color:rgb(253, 251, 251);
-    font-family: 'Ubuntu', sans-serif;;
+    font-family: 'Ubuntu', sans-serif;
     font-size: 130%;
     cursor: pointer;
     border-radius: 5px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.5);
-    transition: all 1s ease-out;
+    outline: none;
+    transition: box-shadow .2s ease-out, outline .2s ease-out;
 }
 
 .filter-button:hover {
     background: rgb(47,55,55);
     background: radial-gradient(circle, rgba(47,55,55,1) 0%, rgba(32,48,51,1) 45%, rgba(16,20,20,1) 100%);
     box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.filter-button:focus {
+    background: radial-gradient(circle, rgba(47,55,55,1) 0%, rgba(32,48,51,1) 45%, rgba(16,20,20,1) 100%);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    outline: 5px solid white;
 }
 
 
@@ -239,6 +247,11 @@ button:hover {
     align-items: center;
 }
 
+.login-form h3, .signup-form h3 {
+    font-size: 1.4rem;
+    font-family: var(--cta-font);
+}
+
 .login-form > div, .signup-form > div {
     padding: 10px;
     border-radius: 2px;
@@ -258,21 +271,25 @@ button:hover {
 
 .login-form button, .signup-form button {
     font-size: 1.06rem;
+    font-family: 'Ubuntu', sans-serif;
     padding: 15px;
     /* background: rgb(64,222,169); */
     background: linear-gradient(343deg, rgba(64,222,169,1) 0%, rgba(51,187,142,1) 100%);
     min-width: 20rem;
-    transition: background-image 1s;
+    transform: scale(1);
+    transition: background-image 1s, transform .5s;
+
 }
 
 .login-form button:hover, .signup-form button:hover {
     /* background: rgb(62,189,146); */
     background: linear-gradient(343deg, rgba(62,189,146,1) 0%, rgba(29,112,85,1) 100%);
+    transform: scale(1.1);
 }
 
 input:focus {
     outline: none;
-    border: 1px solid #3486eb;
+    border: 3px solid #3486eb;
 }
 
 form label {
