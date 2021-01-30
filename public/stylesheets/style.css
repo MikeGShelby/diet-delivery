@@ -132,8 +132,7 @@ body, html {
 .filter-button {
     flex: .15 .15 0px;
     display: center;
-    background: rgb(90,101,101);
-    background: radial-gradient(circle, rgba(90,101,101,1) 0%, rgba(68,83,85,1) 45%, rgba(67,84,84,1) 100%);
+    background: radial-gradient(circle, rgb(114, 128, 128) 0%, rgb(96, 116, 119) 45%, rgb(95, 119, 119) 100%);
     border: 0;
     padding: 2%;
     margin: .5%;
@@ -142,7 +141,7 @@ body, html {
     font-size: 130%;
     cursor: pointer;
     border-radius: 5px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    box-shadow: 1px 3px 10px rgba(0,0,0,0.9);
     outline: none;
     transition: box-shadow .2s ease-out, outline .2s ease-out;
 }

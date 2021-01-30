@@ -10,7 +10,7 @@ router.get('/user', (req, res) => {
       include: [
         {
           model: UserProfile ,
-          attributes: ['firstName', 'lastName', 'streetAddress', 'city', 'state', 'zipCode' ]
+          attributes: ['display_name', 'first_name', 'last_name', 'street_address', 'city', 'state', 'zip_code' ]
         }
       ]
     })

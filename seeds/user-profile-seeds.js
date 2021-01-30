@@ -3,6 +3,7 @@ const { UserProfile } = require('../models');
 const userProfileData = [
     {
      user_id: 1,
+     display_name: 'DisplayName1',
      first_name: 'FirstName1',
      last_name: 'LastName1',
      street_address: '1111 Street Dr',
@@ -12,6 +13,7 @@ const userProfileData = [
    },
    {
      user_id: 2,
+     display_name: 'DisplayName2',
      first_name: 'FirstName2',
      last_name: 'LastName2',
      street_address: '2222 Street Dr',
@@ -21,6 +23,7 @@ const userProfileData = [
    },
    {
     user_id: 3,
+    display_name: 'DisplayName3',
     first_name: 'FirstName3',
     last_name: 'LastName3',
     street_address: '3333 Street Dr',

@@ -9,6 +9,10 @@ router.get('/', (req, res) => {
       attributes: { exclude: ['password'] },
       include: [
         {
+          model: UserProfile,
+          attributes: ['display_name', 'first_name', 'last_name', 'street_address', 'city', 'state', 'zip_code' ]
+        },
+        {
           model: Meal,
           attributes: ['id', 'title', 'description', 'image', 'created_at'],
           through: SelectMeal,
@@ -37,6 +41,10 @@ router.get('/:id', (req, res) => {
       },
       include: [
         {
+          model: UserProfile ,
+          attributes: ['display_name', 'first_name', 'last_name', 'street_address', 'city', 'state', 'zip_code' ]
+        },
+        {
           model: Meal,
           attributes: ['id', 'title', 'description', 'image', 'created_at'],
           through: SelectMeal,
@@ -46,10 +54,6 @@ router.get('/:id', (req, res) => {
                 attributes: ['id', 'diet_name']
               }
             ]
-        },
-        {
-          model: UserProfile,
-          attributes: ['first_name', 'last_name', 'street_address', 'city', 'state', 'zip_code']
         }
       ]
     })
@@ -87,6 +91,27 @@ router.post('/', (req, res) => {
       res.status(500).json(err);
     });
 });
+
+// POST /api/users/id (create new user profile)
+router.post('/:id', (req, res) => {
+  UserProfile.create({
+    user_id: req.params.id,
+    display_name: req.body.display_name,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    street_address: req.body.street_address,
+    city: req.body.city,
+    state: req.body.state,
+    zip_code: req.body.zip_code
+  })
+  .then(dbUserProfileData => res.json(dbUserProfileData))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
+
 
 // POST /api/users (user login route)
 router.post('/login', (req, res) => {

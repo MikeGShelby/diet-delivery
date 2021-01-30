@@ -7,6 +7,9 @@ class UserProfile extends Model {}
 
 UserProfile.init(
     {
+        display_name: {
+            type: DataTypes.STRING
+        },
         first_name: {
             type: DataTypes.STRING,
             allowNull: false,

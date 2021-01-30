@@ -33,11 +33,6 @@ function buttonFilter(foodPlan) {
         }
     })
 
-    // const filteredMealsTitle = document.querySelector('.filtered-meals-title');
-    // filteredMealsTitle.innerHTML = '';
-
-    // let foodContainers = [...document.querySelectorAll(`.${foodPlan}`)];
-    // console.log(foodContainers);
     const filteredContainer = document.querySelector('.filtered-list');
     filteredContainer.innerHTML = '';
 
@@ -48,7 +43,6 @@ function buttonFilter(foodPlan) {
     console.log(dietMeals);
 
     dietMeals.map(meal => {
-        // filteredMealsTitle.innerHTML = `<h3>${foodPlan}</h3>`;
         filteredContainer.append(meal);
     })
 }
