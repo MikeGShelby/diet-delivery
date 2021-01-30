@@ -140,7 +140,7 @@ body, html {
     font-family: 'Ubuntu', sans-serif;
     font-size: 130%;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 3px;
     box-shadow: 1px 3px 10px rgba(0,0,0,0.9);
     outline: none;
     transition: box-shadow .2s ease-out, outline .2s ease-out;
@@ -158,8 +158,6 @@ body, html {
     outline: 5px solid white;
 }
 
-
-
 button {
     background-color: #225ca3;
     border: 0;
@@ -168,7 +166,7 @@ button {
     font-weight: bold;
     transition: background-color .1s;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 button:hover {

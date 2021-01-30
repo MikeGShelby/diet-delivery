@@ -12,27 +12,24 @@ UserProfile.init(
         },
         first_name: {
             type: DataTypes.STRING,
-            allowNull: false,
         },
         last_name: {
             type: DataTypes.STRING,
-            allowNull: false
         },
         street_address: {
             type: DataTypes.STRING,
-            allowNull: false
         },
         city: {
             type: DataTypes.STRING,
-            allowNull: false
+
         },
         state: {
             type: DataTypes.STRING,
-            allowNull: false
+
         },
         zip_code: {
             type: DataTypes.INTEGER,
-            allowNull: false
+
         },
         user_id: {
             type: DataTypes.INTEGER,

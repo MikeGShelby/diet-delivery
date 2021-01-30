@@ -4,10 +4,10 @@ const { User, UserProfile, Meal, SelectMeal, Diet, MealDiet } = require('../mode
 const withAuth = require('../utils/auth');
 
 // GET user by ID
-router.get('/:id', (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
   User.findOne({
     where: {
-      // id: req.session.id
+      // user_id: req.session.user_id
       id: req.params.id
     },
     attributes: [
@@ -44,7 +44,7 @@ router.get('/:id', (req, res) => {
     // pass data to template
     res.render('dashboard', {
       user,
-      loggedIn: req.session.loggedIn
+      loggedIn: true
     });
   })
   .catch(err => {

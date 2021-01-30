@@ -1,6 +1,24 @@
 const router = require('express').Router();
 const { User, UserProfile } = require('../../models');
 
+// POST /api/users/id (create new user profile)
+router.post('/:id', (req, res) => {
+  UserProfile.create({
+    user_id: req.params.id,
+    display_name: req.body.display_name,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    street_address: req.body.street_address,
+    city: req.body.city,
+    state: req.body.state,
+    zip_code: req.body.zip_code
+  })
+  .then(dbUserProfileData => res.json(dbUserProfileData))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
 
 // PUT /api/users/profile/id (update user name and address info, WITH auth)
 // router.put('/:id', withAuth, (req, res) => { }
