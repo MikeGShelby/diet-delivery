@@ -82,6 +82,7 @@ router.post('/', (req, res) => {
         req.session.user_id = dbUserData.id;
         req.session.email = dbUserData.email;
         req.session.loggedIn = true;
+        console.log(req.session);
 
         res.json(dbUserData);
       });
@@ -101,6 +102,7 @@ router.post('/login', (req, res) => {
   }).then(dbUserData => {
     if (!dbUserData) {
       res.status(400).json({ message: 'No user with that email address!' });
+      console.log(`No user with that email address!`)
       return;
     }
 
@@ -108,6 +110,7 @@ router.post('/login', (req, res) => {
 
     if (!validPassword) {
       res.status(400).json({ message: 'Incorrect password!' });
+      console.log(`Incorrect password!`)
       return;
     }
 
@@ -118,6 +121,7 @@ router.post('/login', (req, res) => {
       req.session.loggedIn = true;
 
       res.json({ user: dbUserData, message: 'You are now logged in!' });
+      console.log(`You are now logged in, ${dbUserData}!`)
     });
   });
 });
@@ -127,6 +131,7 @@ router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
+      console.log("You are now logged out");
     });
   }
   else {

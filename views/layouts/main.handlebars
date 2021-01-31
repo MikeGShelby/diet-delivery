@@ -28,10 +28,16 @@
      <header class="header">
         <h1><a href="/" class="header-logo">
         Diet Delivery</a></h1>
-      <nav>
+      <nav class="nav-section">
         {{#if loggedIn}}
-          <a href="/dashboard"><i class="fas fa-user user-icon"></i>Dashboard</a>
-          <button id="logout" class="btn-no-style"><i class="fas fa-sign-out-alt logout-icon"></i>Log Out</button>
+          <div class="dashboard-button tooltip">
+            <a href="/dashboard">
+            <i class="fas fa-user user-icon">&nbsp;Dashboard
+              <span class="tooltiptext">{{email}}</span>
+            </i>
+            </a>
+          </div>
+          <button id="logout" class="logout-btn">Log Out</button>
         {{else}}
           <a href="/login">Log In</a>
           <a href="/signup">Sign Up</a>

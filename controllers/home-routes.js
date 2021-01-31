@@ -5,6 +5,7 @@ const { Meal, User, SelectMeal, Diet, MealDiet } = require('../models');
 // GET homepage
 router.get('/', (req, res) => {
   console.log(req.session);
+  console.log('test text');
   Meal.findAll({
     attributes: [
       'id',
@@ -27,6 +28,7 @@ router.get('/', (req, res) => {
       // Added loggedIn data here, as homepage was not properly displaying conditional login/logout link
       res.render('homepage', {
         meals,
+        email: req.session.email,
         loggedIn: req.session.loggedIn
       });
     })

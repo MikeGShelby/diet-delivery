@@ -23,7 +23,7 @@ body, html {
     margin: 0 auto;
 }
 
-/* HEADER STYLES */
+/* HEADER SECTION */
 .header {
     /* background-color: rgb(65, 64, 64); */
     background: rgb(3,30,31);
@@ -48,7 +48,16 @@ body, html {
     transition: color .9s;
 }
 
-.header nav a {
+.nav-section {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-button {
+    display: flex;
+}
+
+.header nav a, .logout-btn {
     font-size: 1.25rem;
     color: white;
     font-weight: bold;
@@ -56,6 +65,18 @@ body, html {
     text-decoration: none;
     margin: 10px;
     transition: color .5s;
+    cursor: pointer;
+}
+
+.logout-btn {
+    background-color: #2d4c52;
+    border: none;
+    padding:6px;
+    border-radius: 2px;
+}
+
+.logout-btn:hover {
+    background-color: #4c7f88;
 }
 
 .header a:hover {
@@ -66,11 +87,64 @@ body, html {
     text-decoration: underline;
 }
 
-.user-icon, .logout-icon {
+.dashboard-button a:hover {
+    color:green;
+}
+
+/* TOOLTIP FUNCTIONALITY */
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    background-color: #555;
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    top: 125%;
+    left: 30%;
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 26%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color:  transparent transparent #555 transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: .85;
+}
+
+.user-icon {
     color: white;
     padding-right: 5%;
 }
 
+/* HERO SECTION */
 .main-body {
     display: flex;
     flex-direction: column;
@@ -134,11 +208,11 @@ body, html {
     display: center;
     background: radial-gradient(circle, rgb(114, 128, 128) 0%, rgb(96, 116, 119) 45%, rgb(95, 119, 119) 100%);
     border: 0;
-    padding: 2%;
+    padding: 1.5%;
     margin: .5%;
     color:rgb(253, 251, 251);
     font-family: 'Ubuntu', sans-serif;
-    font-size: 130%;
+    font-size: 120%;
     cursor: pointer;
     border-radius: 3px;
     box-shadow: 1px 3px 10px rgba(0,0,0,0.9);
@@ -158,21 +232,6 @@ body, html {
     outline: 5px solid white;
 }
 
-button {
-    background-color: #225ca3;
-    border: 0;
-    padding: 1%;
-    color: white;
-    font-weight: bold;
-    transition: background-color .1s;
-    cursor: pointer;
-    border-radius: 3px;
-}
-
-button:hover {
-    background-color: #3486eb;
-}
-
 /* MEAL CARDS */
 .meal-list, .filtered-list {
     /* width:100vw; */
@@ -185,8 +244,8 @@ button:hover {
 
 .meal-card {
     display: grid;
-    grid-template-columns:300px;
-    grid-template-rows: 210px 210px 80px;
+    grid-template-columns:280px;
+    grid-template-rows: 210px 180px 80px;
     grid-template-areas:"image" "text" "diets";
     font-family: var(--cta-font);
     color: rgb(90, 89, 89);
@@ -258,7 +317,7 @@ button:hover {
 }
 
 .login-form input, .signup-form input {
-    color: rgb(219, 219, 219);
+    color: rgb(59, 59, 59);
     font-size: 1.06rem;
     border: 2px solid rgb(219, 219, 219);
     padding: 15px;
@@ -266,27 +325,28 @@ button:hover {
     min-width: 20rem;
 }
 
+input:focus {
+    outline: none;
+    border: 3px solid #3486eb;
+}
+
 .login-form button, .signup-form button {
     font-size: 1.06rem;
     font-family: 'Ubuntu', sans-serif;
+    color: white;
     padding: 15px;
-    /* background: rgb(64,222,169); */
     background: linear-gradient(343deg, rgba(64,222,169,1) 0%, rgba(51,187,142,1) 100%);
     min-width: 20rem;
     transform: scale(1);
     transition: background-image 1s, transform .5s;
-
+    cursor: pointer;
+    border: none;
+    outline: none;
 }
 
 .login-form button:hover, .signup-form button:hover {
-    /* background: rgb(62,189,146); */
     background: linear-gradient(343deg, rgba(62,189,146,1) 0%, rgba(29,112,85,1) 100%);
     transform: scale(1.1);
-}
-
-input:focus {
-    outline: none;
-    border: 3px solid #3486eb;
 }
 
 form label {
@@ -310,26 +370,6 @@ form label {
 .single-meal-details {
     background-color: rgb(127, 127, 219);
     padding: 20px;
-}
-
-
-
-.btn-no-style {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    text-decoration: none;
-    color: #225ca3;
-    font-size: 100%;
-    font-weight: bold;
-    transition: color .1s;
-    margin-left: 16px;
-}
-
-.btn-no-style:hover {
-    background: none;
-    color: #3486eb;
 }
 
 
