@@ -51,6 +51,12 @@ router.get('/:id', (req, res) => {
         'price',
         'created_at',
         [sequelize.literal('(SELECT COUNT(*) FROM selected_meal WHERE meal.id = selected_meal.meal_id)'), 'meal_selected']
+      ],
+      include: [
+        {
+          model: Diet,
+          attributes: ['id', 'diet_name']
+        }
       ]
     })
       .then(dbMealData => {
@@ -64,6 +70,20 @@ router.get('/:id', (req, res) => {
         console.log(err);
         res.status(500).json(err);
       });
+});
+
+// PUT (select) meal for the logged in user api/meals/select-meal
+router.put('/select-meal', withAuth, (req, res) => {
+  // make sure the session exists first
+  if (req.session) {
+    // pass session id along with all destructured properties on req.body
+    Meal.selectMeal({ ...req.body, user_id: req.session.user_id }, { SelectMeal})
+      .then(updatedSelectMealData => res.json(updatedSelectMealData))
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
 });
 
 module.exports = router;

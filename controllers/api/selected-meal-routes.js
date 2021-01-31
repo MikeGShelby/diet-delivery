@@ -20,14 +20,14 @@ router.get('/', (req, res) => {
   });
 
 // PUT /api/select-meal (create a new selected meal, WITHOUT login auth)
-router.post('/', (req, res) => {
-  SelectMeal.create({
-      user_id: req.body.user_id,
-      meal_id: req.body.meal_id
-  })
-    .then(dbSelectedMealData => res.json(dbSelectedMealData))
-    .catch(err => res.json(err));
-});
+// router.post('/', (req, res) => {
+//   SelectMeal.create({
+//       user_id: req.body.user_id,
+//       meal_id: req.body.meal_id
+//   })
+//     .then(dbSelectedMealData => res.json(dbSelectedMealData))
+//     .catch(err => res.json(err));
+// });
 
 // DELETE /api/select-meal/:id (delete a meal selection, WITHOUT login auth)
 router.delete('/:id', (req, res) => {
@@ -49,8 +49,8 @@ router.delete('/:id', (req, res) => {
         });
   });
 
-// // PUT /api/select-meal (select a meal, WITH login auth)
-// router.post('/', withAuth, (req, res) => {
+// PUT /api/select-meal (select a meal, WITH login auth)
+// router.put('/', withAuth, (req, res) => {
 //   // make sure the session exists first
 //   if (req.session) {
 //     // pass session id along with all destructured properties on req.body

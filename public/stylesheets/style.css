@@ -358,28 +358,96 @@ form label {
 .single-meal-container {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 100px;
+    margin-top: 5%;
     justify-content:space-between;
 }
 
+.single-meal-container h3 {
+    font-family: var(--cta-font);
+    font-size: 1.8rem;
+}
+
+.single-meal-container h4 {
+    font-family: var(--cta-font);
+    font-size: 1.2rem;
+}
+
 .single-meal-image {
-    background-color: rgb(248, 238, 193);
-    padding: 20px;
+    padding: 50px 20px 0px;
+
+}
+
+.single-meal-image img {
+    width: auto;
+    height: 430px;
+
 }
 
 .single-meal-details {
-    background-color: rgb(127, 127, 219);
+    background: radial-gradient(circle, rgba(187,217,218,1) 0%, rgba(168,191,193,1) 45%, rgba(140,197,204,0.1) 100%);
     padding: 20px;
 }
 
+.sub-section {
+    border-bottom: solid 2px rgb(95, 95, 95);
+    padding: 0px 0px 20px 0px;
+}
 
-.upvote-btn {
-    background-color: #197d0f;
+.diets-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.ingredients-section {
+    padding: 0px 0px 50px 0px;
+    border-bottom: none;
+}
+
+.select-meal-btn {
+    background: rgb(114,189,62);
+    background: linear-gradient(343deg, rgba(114,189,62,1) 0%, rgba(36,112,29,1) 100%);
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 120%;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 12px;
+    width: 100%;
     transition: background-color .1s;
 }
 
-.upvote-btn:hover {
-    background-color: #1f9c13;
+.select-meal-btn:hover {
+    background: rgb(102,156,65);
+    background: linear-gradient(343deg, rgba(102,156,65,1) 0%, rgba(25,83,20,1) 100%);
+}
+
+.nutrition-info {
+    display: flex;
+    align-content: left;
+    padding: 0;
+    margin: 0;
+}
+
+.nutrition-info li {
+    /* background-color: yellow;
+    outline: solid 2px black; */
+    list-style:none;
+    padding: 0px 50px 20px 0px;
+}
+
+.nutrition-info li p {
+    color: rgb(12, 107, 136);
+    font-size:1.3rem;
+    font-weight: bold;
+    margin: 3px;
+    padding-bottom: 4px;
+}
+
+.nutrition-info li label {
+    font-size: .95rem;
+    color: rgb(48, 47, 47);
+
 }
 
 footer {

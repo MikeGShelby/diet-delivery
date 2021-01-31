@@ -1,62 +1,77 @@
 <main class="single-meal-container">
 
   <section class="single-meal-image">
-   <img src="/{{meal.image}}" >
+    <img src="/{{meal.image}}" >
   </section>
 
   <section class="single-meal-details">
-    <h3>{{meal.title}}</h3>
-    <p>{{meal.description}}</p>
 
-    {{!-- HARD-CODED BUTTON. THIS SHOULD BE DELETED ONCE LOGIN FUNCTIONALITY IS WORKING PROPERLY --}}
-    <form>
-        <div>
-          <button type="button" class="upvote-btn">Add Meal</button>
-        </div>
-    </form>
+    <div class="sub-section summary-section">
+      <h3>{{meal.title}}</h3>
+      <p>{{meal.description}}</p>
 
-    {{!-- CONDITIONAL BUTTON. THIS SHOULD BE USED ONCE LOGIN FUNCTIONALITY IS WORKING PROPERLY --}}
-    {{#if loggedIn}}
-      <form>
-        <div>
-          <button type="button" class="upvote-btn">Select Meal</button>
-        </div>
-      </form>
+      {{#if loggedIn}}
+        <form>
+          <div>
+            <button type="button" class="select-meal-btn">Select Meal</button>
+          </div>
+        </form>
       {{/if}}
+    </div>
 
-    <ul>
-      <li><p>{{meal.calories}}</p>
-          <p>Calories</p>
-      </li>
-      <li><p>{{meal.fat}}</p>
-          <p>Fat</p>
-      </li>
-      <li><p>{{meal.protein}}</p>
-          <p>Protein</p>
-      </li>
-      <li><p>{{meal.total_carbohydrate}}</p>
-          <p>Total Carbs</p>
-      </li>
-      <li><p>{{meal.total_carbohydrate}}</p>
-          <p>Sugars</p>
-      </li>
-    </ul>
+    <div class="sub-section nutrition-section">
+      <h4>Nutrition Information</h4>
+          <ul class="nutrition-info">
+            <li><p>{{meal.calories}}</p>
+                <label>Calories</label>
+            </li>
+            <li><p>{{meal.fat}}g</p>
+                <label>Fat</label>
+            </li>
+            <li><p>{{meal.protein}}g</p>
+                <label>Protein</label>
+            </li>
+            <li><p>{{meal.total_carbohydrate}}g</p>
+                <label>Total Carbs</label>
+            </li>
+            <li><p>{{meal.sugars}}g</p>
+                <label>Sugars</label>
+            </li>
+          </ul>
+    </div>
 
-    {{#if meal.gf}}
-      <p>Gluten Free</p>
+
+    {{#if diets.length}}
+      <div class="sub-section diets-section">
+        <h4>Diet Information</h4>
+          {{#each diets as |diet|}}
+            <ul>
+              <li>
+                {{ diet.diet_name }}
+              </li>
+            </ul>
+          {{/each}}
+      </div>
     {{/if}}
 
-    <details>
-      <summary>Ingredients</summary>
-        <p>{{meal.ingredients}}</p>
-    </details>
+    <div class="sub-section allergy-section">
+      <h4>Allergy Information</h4>
+        {{#if meal.gf}}
+          <p>Gluten Free</p>
+        {{/if}}
+    </div>
+
+    <div class="sub-section ingredients-section">
+      <details>
+        <summary><h4>Ingredients</h4></summary>
+          <p>{{meal.ingredients}}</p>
+      </details>
+    </div>
 
   </section>
 
 
-
   {{#if loggedIn}}
-    <script src="/javascript/comment.js"></script>
-    <script src="/javascript/upvote.js"></script>
+    <script src="/javascript/select-meal.js"></script>
   {{/if}}
 </main>

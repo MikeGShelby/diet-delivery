@@ -3,32 +3,32 @@ const sequelize = require('../config/connection');
 
 // create Meal model
 class Meal extends Model {
-  // static selectMeal(body, models) {
-  //   return models.SelectMeal.create({
-  //     user_id: body.user_id,
-  //     post_id: body.meal_id
-  //   }).then(() => {
-  //     return Meal.findOne({
-  //       where: {
-  //         id: body.meal_id
-  //       },
-  //       attributes: [
-  //         'id',
-  //         'description',
-  //         'title',
-  //         'image',
-  //         'created_at',
-  //         'ingredients',
-  //         'calories',
-  //         'total_carbs',
-  //         'total_sugars',
-  //         'total_fats',
-  //         'gf',
-  //         'price'
-  //       ]
-  //     });
-  //   });
-  // }
+  static selectMeal(body, models) {
+    return models.SelectMeal.create({
+      user_id: body.user_id,
+      post_id: body.meal_id
+    }).then(() => {
+      return Meal.findOne({
+        where: {
+          id: body.meal_id
+        },
+        attributes: [
+          'id',
+          'description',
+          'title',
+          'image',
+          'created_at',
+          'ingredients',
+          'calories',
+          'total_carbs',
+          'total_sugars',
+          'total_fats',
+          'gf',
+          'price'
+        ]
+      });
+    });
+  }
 }
 
 // create fields/columns for Meal model

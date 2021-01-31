@@ -4,8 +4,7 @@ const { Meal, User, SelectMeal, Diet, MealDiet } = require('../models');
 
 // GET homepage
 router.get('/', (req, res) => {
-  console.log(req.session);
-  console.log('test text');
+
   Meal.findAll({
     attributes: [
       'id',
@@ -79,6 +78,12 @@ router.get('/meal/:id', (req, res) => {
         'price',
         'created_at',
         [sequelize.literal('(SELECT COUNT(*) FROM selected_meal WHERE meal.id = selected_meal.meal_id)'), 'meal_selected']
+    ],
+    include: [
+      {
+        model: Diet,
+        attributes: ['id', 'diet_name']
+      }
     ]
   })
     .then(dbMealData => {
@@ -89,10 +94,13 @@ router.get('/meal/:id', (req, res) => {
 
       // serialize the data
       const meal = dbMealData.get({ plain: true });
+      const diets = dbMealData.diets.map(diet => diet.get({ plain: true }));
 
       // pass data to template
       res.render('single-meal', {
         meal,
+        diets,
+        user_id: req.session.user_id,
         email: req.session.email,
         loggedIn: req.session.loggedIn
       });
