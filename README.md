@@ -45,6 +45,7 @@ As part of a team project within The Coding Bootcamp at UT Austin, this project 
 * Chris Podoba
 * Ayoub Hammouch
 * Lafon Clark
+* Obinna Ezekwe
 
 ## Tests
 All API end points were tested using Insomnia Core. Utility functions were tested using Jest.
