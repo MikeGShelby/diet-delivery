@@ -93,6 +93,7 @@ router.get('/meal/:id', (req, res) => {
       // pass data to template
       res.render('single-meal', {
         meal,
+        email: req.session.email,
         loggedIn: req.session.loggedIn
       });
     })
