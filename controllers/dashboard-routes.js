@@ -3,12 +3,12 @@ const sequelize = require('../config/connection');
 const { User, UserProfile, Meal, SelectMeal, Diet, MealDiet } = require('../models');
 const withAuth = require('../utils/auth');
 
+
 // GET user by ID
-router.get('/:id', withAuth, (req, res) => {
-  User.findOne({
+router.get('/', withAuth, (req, res) => {
+  User.findAll({
     where: {
-      // user_id: req.session.user_id
-      id: req.params.id
+      user_id: req.session.user_id
     },
     attributes: [
       'email',
@@ -28,7 +28,7 @@ router.get('/:id', withAuth, (req, res) => {
       },
       {
         model: UserProfile,
-        attributes: ['first_name', 'last_name', 'street_address', 'city', 'state', 'zip_code']
+        attributes: ['display_name', 'first_name', 'last_name', 'street_address', 'city', 'state', 'zip_code']
       }
     ]
   })
@@ -44,6 +44,7 @@ router.get('/:id', withAuth, (req, res) => {
     // pass data to template
     res.render('dashboard', {
       user,
+      user_id: req.session.user_id,
       loggedIn: true
     });
   })
