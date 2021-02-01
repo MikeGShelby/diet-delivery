@@ -33,7 +33,11 @@
           <div class="dashboard-button tooltip">
             <a href="/dashboard">
             <i class="fas fa-user user-icon">&nbsp;Dashboard
-              <span class="tooltiptext">{{email}}</span>
+              {{#if display_name}}
+                <span class="tooltiptext">{{display_name}}</span>
+                  {{else}}
+                    <span class="tooltiptext">{{format_display_name email}}</span>
+              {{/if}}
             </i>
             </a>
           </div>
@@ -44,7 +48,6 @@
         {{/if}}
       </nav>
     </header>
-
 
     <main class="main-body">
       {{{ body }}}

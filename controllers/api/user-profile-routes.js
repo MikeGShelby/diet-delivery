@@ -13,7 +13,12 @@ router.post('/', (req, res) => {
     state: req.body.state,
     zip_code: req.body.zip_code
   })
-  .then(dbUserProfileData => res.json(dbUserProfileData))
+  .then(dbUserProfileData => {
+    req.session.save(() => {
+      req.session.display_name = dbUserProfileData.display_name;
+      res.json(dbUserProfileData);
+    });
+  })
   .catch(err => {
     console.log(err);
     res.status(500).json(err);

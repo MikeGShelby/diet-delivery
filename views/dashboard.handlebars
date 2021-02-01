@@ -1,7 +1,7 @@
 
 <section class="user-profile">
   <h3>User Information</h3>
-    <p>
+   <p>
       {{user.user_profile.first_name}} {{user.user_profile.last_name}}
     </p>
     <p>
@@ -23,7 +23,7 @@
 
 
 {{#if user.meals.length}}
-  < class="user-meals">
+  <section class="user-meals">
     <h2>Your Meals</h2>
       <div class="meal-list">
         {{#each user.meals as |meal|}}
@@ -32,7 +32,7 @@
 
         {{/each}}
       </div>
-  </>
+  </section>
 {{/if}}
 
 

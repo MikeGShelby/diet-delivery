@@ -1,10 +1,9 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Meal, User, SelectMeal, Diet, MealDiet } = require('../models');
+const { Meal, User, UserProfile, SelectMeal, Diet, MealDiet } = require('../models');
 
 // GET homepage
 router.get('/', (req, res) => {
-
   Meal.findAll({
     attributes: [
       'id',
@@ -27,6 +26,7 @@ router.get('/', (req, res) => {
       // Added loggedIn data here, as homepage was not properly displaying conditional login/logout link
       res.render('homepage', {
         meals,
+        display_name: req.session.display_name,
         email: req.session.email,
         loggedIn: req.session.loggedIn
       });
