@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const { User, UserProfile } = require('../../models');
 
-// POST /api/users/id (create new user profile)
-router.post('/:id', (req, res) => {
+// POST /api/users/profile (create new user profile)
+router.post('/', (req, res) => {
   UserProfile.create({
-    user_id: req.params.id,
+    user_id: req.session.user_id,
     display_name: req.body.display_name,
     first_name: req.body.first_name,
     last_name: req.body.last_name,

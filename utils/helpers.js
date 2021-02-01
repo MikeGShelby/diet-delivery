@@ -21,5 +21,9 @@ module.exports = {
       return imgPath
         .replace('images/', '')
         .split('.')[0]
-  },
+    },
+    format_display_name: email => {
+      return email
+        .split('@')[0]
+    }
 }
