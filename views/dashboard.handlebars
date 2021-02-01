@@ -1,19 +1,28 @@
-{{user.email}}
 
-{{meal.title}}
+<section class="user-profile">
 
-{{#if meals.length}}
-<section>
-  <h2>Your Meals</h2>
-  <ul>
-    {{#each meals as |meal|}}
-    <li>
-      {{> meal-info meal}}
-    </li>
-    {{/each}}
-  </ul>
+   {{user.email}}
+
 </section>
+
+
+
+
+{{#if user.meals.length}}
+  <section class="user-meals">
+    <h2>Your Meals</h2>
+      <div class="meal-list">
+        {{#each user.meals as |meal|}}
+
+            {{> meal-info meal }}
+
+        {{/each}}
+      </div>
+  </section>
 {{/if}}
+
+
+
 
 <script src="/javascript/select-meal.js"></script>
 

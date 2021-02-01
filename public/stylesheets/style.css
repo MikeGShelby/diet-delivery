@@ -280,7 +280,7 @@ body, html {
     padding: 0px 20px;
 }
 
-/* LOGIN FORM STYLES */
+/* LOGIN FORM SECTION */
 .login-form-container {
     display: flex;
     justify-content: center;
@@ -352,7 +352,6 @@ input:focus {
 form label {
     display: block;
 }
-
 
 /* SINGLE MEAL PAGE STYLES */
 .single-meal-container {
@@ -470,5 +469,16 @@ footer {
     height: 400px;
     width: 500px;
     object-fit: cover;
+}
+
+/* DASHBOARD SECTION */
+.user-profile {
+    background-color: rgb(209, 209, 209);
+    padding: 100px;
+}
+
+.user-meals {
+    /* display: flex;
+    flex-direction: column; */
 
 }
