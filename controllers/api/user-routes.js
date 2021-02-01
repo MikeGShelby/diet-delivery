@@ -98,7 +98,13 @@ router.post('/login', (req, res) => {
   User.findOne({
     where: {
       email: req.body.email
-    }
+    },
+    include: [
+      {
+        model: UserProfile,
+        attributes: ['display_name']
+      }
+    ]
   }).then(dbUserData => {
     if (!dbUserData) {
       res.status(400).json({ message: 'No user with that email address!' });
@@ -118,10 +124,10 @@ router.post('/login', (req, res) => {
       // declare session variables
       req.session.user_id = dbUserData.id;
       req.session.email = dbUserData.email;
+      req.session.display_name = dbUserData.user_profile.display_name;
       req.session.loggedIn = true;
 
       res.json({ user: dbUserData, message: 'You are now logged in!' });
-      console.log(`You are now logged in, ${dbUserData}!`)
     });
   });
 });

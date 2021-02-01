@@ -101,6 +101,7 @@ router.get('/meal/:id', (req, res) => {
         meal,
         diets,
         user_id: req.session.user_id,
+        display_name: req.session.display_name,
         email: req.session.email,
         loggedIn: req.session.loggedIn
       });

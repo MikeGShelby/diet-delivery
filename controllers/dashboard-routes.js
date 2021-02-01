@@ -43,6 +43,7 @@ router.get('/', withAuth, (req, res) => {
     // pass data to template
     res.render('dashboard', {
       user,
+      display_name: req.session.display_name,
       email: req.session.email,
       user_id: req.session.user_id,
       loggedIn: true
@@ -79,6 +80,7 @@ router.get('/profile', withAuth, (req, res) => {
     // pass data to template
     res.render('user-profile', {
       user,
+      display_name: req.session.display_name,
       email: req.session.email,
       user_id: req.session.user_id,
       loggedIn: true
