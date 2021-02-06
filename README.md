@@ -44,7 +44,6 @@ As part of a team project within The Coding Bootcamp at UT Austin, this project 
 * Ricky Sullivan
 * Chris Podoba
 * Ayoub Hammouch
-* Lafon Clark
 * Obinna Ezekwe
 
 ## Tests
