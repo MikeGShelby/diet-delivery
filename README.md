@@ -46,6 +46,8 @@ As part of a team project within The Coding Bootcamp at UT Austin, this project 
 * Ayoub Hammouch
 * Obinna Ezekwe
 
+![View Contributions](https://github.com/MikeGShelby/diet-delivery/graphs/contributors "View Contributions")
+
 ## Tests
 All API end points were tested using Insomnia Core. Utility functions were tested using Jest.
 
