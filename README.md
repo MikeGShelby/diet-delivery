@@ -36,7 +36,7 @@ https://diet-delivery.herokuapp.com/
 
 ## License
 MIT License
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+(https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Contributing
 As part of a team project within The Coding Bootcamp at UT Austin, this project was developed by the following:
